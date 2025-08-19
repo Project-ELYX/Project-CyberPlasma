@@ -1,0 +1,8 @@
+{
+  "//": "Bismuth configuration with per-application exclusions.",
+  "float_filter": [
+    { "class": "org.kde.plasmashell" },
+    { "class": "krunner" },
+    { "class": "yakuake" }
+  ]
+}
