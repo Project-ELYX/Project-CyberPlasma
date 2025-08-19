@@ -1,8 +1,37 @@
-;; Top bar widget with CPU and RAM metrics
+;; Top bar widget with time, system metrics, network, IP info, and media controls
+;; Time and date
+(defpoll datetime :interval "1s" :command "date +'%Y-%m-%d %H:%M:%S'")
+
+;; System gauges
 (defpoll cpu :interval "1s" :command "../scripts/cpu.sh" :json true)
 (defpoll ram :interval "5s" :command "../scripts/ram.sh" :json true)
+(defpoll temp :interval "5s" :command "../scripts/temp.sh | jq '{temp: (.[keys[0]])}'" :json true)
+
+;; Network rates and IP information
+(defpoll net :interval "2s" :command "../scripts/net.sh $(../scripts/default_iface.sh)" :json true)
+(defpoll vpn :interval "10s" :command "../scripts/vpn.sh" :json true)
+(defpoll local_ip :interval "60s" :command "../scripts/local_ip.sh" :json true)
+(defpoll public_ip :interval "60s" :command "../scripts/public_ip.sh" :json true)
+
+;; Media info
+(defpoll mpris :interval "2s" :command "../scripts/mpris.sh" :json true)
 
 (defwidget top_bar []
   (box :class "top-bar" :space-evenly true :hexpand true
-       (label :class "cpu" :text "${cpu.usage}%")
-       (label :class "ram" :text "${ram.percent}%")))
+       ;; Time/Date
+       (label :class "datetime" :text "${datetime}")
+       ;; Gauges
+       (progress :class "cpu" :value cpu.usage :max 100)
+       (progress :class "ram" :value ram.percent :max 100)
+       (progress :class "temp" :value temp.temp :max 100)
+       ;; Network rates
+       (label :class "net-rx" :text "Rx ${net.rx_kBps} kB/s")
+       (label :class "net-tx" :text "Tx ${net.tx_kBps} kB/s")
+       ;; IP information
+       (label :class "vpn" :text "VPN ${vpn.vpn}")
+       (label :class "local-ip" :text "${local_ip[net.interface]}")
+       (label :class "public-ip" :text "${public_ip.ip}")
+       ;; Now playing with controls
+       (box :class "mpris" :spacing 4
+            (label :class "mpris-text" :text "${mpris.artist} - ${mpris.title}")
+            (mpris_controls))))
