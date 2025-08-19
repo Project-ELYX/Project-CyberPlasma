@@ -1,3 +1,6 @@
-# MPRIS controls widget placeholder
+;; Media player controls using playerctl
 (defwidget mpris_controls []
-  (box :class "mpris-controls"))
+  (box :class "mpris-controls" :space-evenly true
+       (button :class "mpris-prev" :onclick "playerctl previous" "⏮")
+       (button :class "mpris-play" :onclick "playerctl play-pause" "⏯")
+       (button :class "mpris-next" :onclick "playerctl next" "⏭")))

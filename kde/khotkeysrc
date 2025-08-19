@@ -1,9 +1,9 @@
-# KDE global shortcuts for toggling Bismuth via toggle_tiling.sh
+# KDE global shortcuts for Bismuth mode control via toggle_tiling.sh
 # Generated for CyberPlasma.
 
 [Main]
 Version=3
-DataCount=1
+DataCount=9
 
 [Data_1]
 Comment=Toggle Bismuth tiling
@@ -19,16 +19,168 @@ Type=COMMAND_URL
 CommandURL=~/scripts/toggle_tiling.sh
 
 [Data_1/Triggers]
-TriggersCount=3
+TriggersCount=1
 
 [Data_1/Triggers/0]
 Type=SHORTCUT
 Shortcut=Meta+T
 
-[Data_1/Triggers/1]
+[Data_2]
+Comment=Enable Bismuth grid mode
+Enabled=true
+Name=Bismuth Grid
+Type=GENERIC
+
+[Data_2/Actions]
+ActionsCount=1
+
+[Data_2/Actions/0]
+Type=COMMAND_URL
+CommandURL=~/scripts/toggle_tiling.sh --grid
+
+[Data_2/Triggers]
+TriggersCount=1
+
+[Data_2/Triggers/0]
 Type=SHORTCUT
 Shortcut=Meta+Shift+T
 
-[Data_1/Triggers/2]
+[Data_3]
+Comment=Enable Bismuth free mode
+Enabled=true
+Name=Bismuth Free
+Type=GENERIC
+
+[Data_3/Actions]
+ActionsCount=1
+
+[Data_3/Actions/0]
+Type=COMMAND_URL
+CommandURL=~/scripts/toggle_tiling.sh --free
+
+[Data_3/Triggers]
+TriggersCount=1
+
+[Data_3/Triggers/0]
 Type=SHORTCUT
 Shortcut=Meta+Alt+T
+
+[Data_4]
+Comment=Cycle HUD presets forward
+Enabled=true
+Name=HUD Preset Next
+Type=GENERIC
+
+[Data_4/Actions]
+ActionsCount=1
+
+[Data_4/Actions/0]
+Type=COMMAND_URL
+CommandURL=~/scripts/cp_layouts.py cycle next
+
+[Data_4/Triggers]
+TriggersCount=1
+
+[Data_4/Triggers/0]
+Type=SHORTCUT
+Shortcut=Meta+F6
+
+[Data_5]
+Comment=Cycle HUD presets backward
+Enabled=true
+Name=HUD Preset Previous
+Type=GENERIC
+
+[Data_5/Actions]
+ActionsCount=1
+
+[Data_5/Actions/0]
+Type=COMMAND_URL
+CommandURL=~/scripts/cp_layouts.py cycle prev
+
+[Data_5/Triggers]
+TriggersCount=1
+
+[Data_5/Triggers/0]
+Type=SHORTCUT
+Shortcut=Meta+F7
+
+[Data_6]
+Comment=Move HUD up
+Enabled=true
+Name=HUD Move Up
+Type=GENERIC
+
+[Data_6/Actions]
+ActionsCount=1
+
+[Data_6/Actions/0]
+Type=COMMAND_URL
+CommandURL=~/scripts/cp_layouts.py move up
+
+[Data_6/Triggers]
+TriggersCount=1
+
+[Data_6/Triggers/0]
+Type=SHORTCUT
+Shortcut=Meta+Alt+Up
+
+[Data_7]
+Comment=Move HUD down
+Enabled=true
+Name=HUD Move Down
+Type=GENERIC
+
+[Data_7/Actions]
+ActionsCount=1
+
+[Data_7/Actions/0]
+Type=COMMAND_URL
+CommandURL=~/scripts/cp_layouts.py move down
+
+[Data_7/Triggers]
+TriggersCount=1
+
+[Data_7/Triggers/0]
+Type=SHORTCUT
+Shortcut=Meta+Alt+Down
+
+[Data_8]
+Comment=Move HUD left
+Enabled=true
+Name=HUD Move Left
+Type=GENERIC
+
+[Data_8/Actions]
+ActionsCount=1
+
+[Data_8/Actions/0]
+Type=COMMAND_URL
+CommandURL=~/scripts/cp_layouts.py move left
+
+[Data_8/Triggers]
+TriggersCount=1
+
+[Data_8/Triggers/0]
+Type=SHORTCUT
+Shortcut=Meta+Alt+Left
+
+[Data_9]
+Comment=Move HUD right
+Enabled=true
+Name=HUD Move Right
+Type=GENERIC
+
+[Data_9/Actions]
+ActionsCount=1
+
+[Data_9/Actions/0]
+Type=COMMAND_URL
+CommandURL=~/scripts/cp_layouts.py move right
+
+[Data_9/Triggers]
+TriggersCount=1
+
+[Data_9/Triggers/0]
+Type=SHORTCUT
+Shortcut=Meta+Alt+Right
