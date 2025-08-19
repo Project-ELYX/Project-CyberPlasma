@@ -8,8 +8,7 @@ After=graphical-session.target
 
 [Service]
 ExecStart=eww daemon
-ExecStartPost=eww open top_bar
-ExecStartPost=eww open left_column
+ExecStartPost=../../../cyberplasma/scripts/launch-eww.sh
 Restart=on-failure
 
 [Install]
