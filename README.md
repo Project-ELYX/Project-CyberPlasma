@@ -26,6 +26,8 @@ All helper scripts in `cyberplasma/scripts` are POSIX-compliant and run without 
    ```
 3. Enable the theme from *System Settings → Appearance → Window Decorations*.
 
+See [Window Decorations/README.md](Window%20Decorations/README.md) for details on each SVG and licensing.
+
 ### Future EWW Config
 An EWW configuration will be provided in a future update. Once available:
 1. Copy the `eww/` directory to `~/.config/eww`.
