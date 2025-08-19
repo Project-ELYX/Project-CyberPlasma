@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # Output RAM usage as JSON.
 # Avoids elevated privileges and ensures sanitized output.
-set -euo pipefail
+set -eu
 
 meminfo=/proc/meminfo
 total=$(awk '/^MemTotal:/ {print $2}' "$meminfo")

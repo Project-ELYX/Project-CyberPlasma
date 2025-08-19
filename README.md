@@ -10,6 +10,9 @@ Cyberpunk-themed Plasma KDE rice kit. Main color theme right now is purple/cyan/
 - Git for cloning the repository
 - (Optional) [EWW](https://elkowar.github.io/eww/) for widget customization
 
+## Security
+All helper scripts in `cyberplasma/scripts` are POSIX-compliant and run without elevated privileges. Inputs are sanitized, and network requests include fixed timeouts. The project operates entirely in user space without requiring escalated permissions. Continuous integration runs ShellCheck to maintain script quality.
+
 ## Installation
 
 ### Window Decorations

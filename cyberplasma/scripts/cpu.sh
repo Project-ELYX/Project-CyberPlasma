@@ -1,13 +1,13 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # Output CPU usage percentage as JSON.
 # Avoids elevated privileges and ensures sanitized output.
-set -euo pipefail
+set -eu
 
 read -r _ user nice system idle iowait irq softirq steal guest < /proc/stat
 prev_total=$((user + nice + system + idle + iowait + irq + softirq + steal))
 prev_idle=$((idle + iowait))
 
-sleep 0.2
+sleep 1
 
 read -r _ user nice system idle iowait irq softirq steal guest < /proc/stat
 total=$((user + nice + system + idle + iowait + irq + softirq + steal))
