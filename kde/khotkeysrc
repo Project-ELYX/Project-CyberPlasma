@@ -1,9 +1,9 @@
-# KDE global shortcuts for toggling Bismuth via toggle_tiling.sh
+# KDE global shortcuts for Bismuth mode control via toggle_tiling.sh
 # Generated for CyberPlasma.
 
 [Main]
 Version=3
-DataCount=1
+DataCount=3
 
 [Data_1]
 Comment=Toggle Bismuth tiling
@@ -19,16 +19,48 @@ Type=COMMAND_URL
 CommandURL=~/scripts/toggle_tiling.sh
 
 [Data_1/Triggers]
-TriggersCount=3
+TriggersCount=1
 
 [Data_1/Triggers/0]
 Type=SHORTCUT
 Shortcut=Meta+T
 
-[Data_1/Triggers/1]
+[Data_2]
+Comment=Enable Bismuth grid mode
+Enabled=true
+Name=Bismuth Grid
+Type=GENERIC
+
+[Data_2/Actions]
+ActionsCount=1
+
+[Data_2/Actions/0]
+Type=COMMAND_URL
+CommandURL=~/scripts/toggle_tiling.sh --grid
+
+[Data_2/Triggers]
+TriggersCount=1
+
+[Data_2/Triggers/0]
 Type=SHORTCUT
 Shortcut=Meta+Shift+T
 
-[Data_1/Triggers/2]
+[Data_3]
+Comment=Enable Bismuth free mode
+Enabled=true
+Name=Bismuth Free
+Type=GENERIC
+
+[Data_3/Actions]
+ActionsCount=1
+
+[Data_3/Actions/0]
+Type=COMMAND_URL
+CommandURL=~/scripts/toggle_tiling.sh --free
+
+[Data_3/Triggers]
+TriggersCount=1
+
+[Data_3/Triggers/0]
 Type=SHORTCUT
 Shortcut=Meta+Alt+T

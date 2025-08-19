@@ -1,0 +1,12 @@
+# Restore Bismuth tiling mode at login.
+# Runs the apply_bismuth_mode script if a saved mode exists.
+
+[Unit]
+Description=Restore Bismuth tiling mode
+After=graphical-session.target
+
+[Service]
+ExecStart=%h/scripts/apply_bismuth_mode.sh
+
+[Install]
+WantedBy=cyberplasma.target
