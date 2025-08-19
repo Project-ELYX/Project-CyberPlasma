@@ -29,7 +29,8 @@ An EWW configuration will be provided in a future update. Once available:
 2. Start the daemon and open the widgets:
    ```bash
    eww daemon
-   eww open cyberbar
+   eww open top_bar
+   eww open left_column
    ```
 
 ## GridMode and FreeMode
@@ -43,6 +44,7 @@ Use the following shortcuts to switch between modes:
 
 - `Meta+G` toggles **GridMode**.
 - `Meta+F` toggles **FreeMode**.
+- `Meta+T`, `Meta+Shift+T`, and `Meta+Alt+T` toggle Bismuth tiling on or off.
 
 ### Persistence
 The current mode is remembered and restored on login so your preferred layout
