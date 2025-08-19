@@ -36,6 +36,13 @@ An EWW configuration will be provided in a future update. Once available:
    eww open left_column
    ```
 
+### Screen Modes
+Restore saved display configurations at login by enabling the user service:
+
+```bash
+systemctl --user enable --now screen-modes.service
+```
+
 ## GridMode and FreeMode
 CyberPlasma leverages KWin's tiling system and provides two layouts:
 

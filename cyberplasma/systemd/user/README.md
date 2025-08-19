@@ -8,6 +8,7 @@ These units manage optional components for the CyberPlasma setup.
 - `glava.service` – starts the GLava audio visualizer.
 - `yakuake.service` – runs the Yakuake drop-down terminal.
 - `bismuth-mode.service` – restores the last Bismuth tiling mode on login.
+- `screen-modes.service` – applies saved screen modes on login.
 
 ## Dependencies
 - `eww` for `eww.service`
