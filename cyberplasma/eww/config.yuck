@@ -1,11 +1,22 @@
-# Placeholder Eww configuration file for CyberPlasma.
-# Define widgets and layouts here.
-# Ensure commands are sanitized and avoid executing untrusted code.
+;; CyberPlasma Eww configuration
 
-# Include widget definitions
+;; Include widget definitions
 (include "./widgets/top_bar.yuck")
 (include "./widgets/left_column.yuck")
 (include "./widgets/mpris_controls.yuck")
 
-# Reference shared styles
-(include "../style.scss")
+;; Link shared styles
+(include-css "../style.scss")
+
+;; Expose widgets as windows
+(defwindow top_bar
+  :focusable false
+  (top_bar))
+
+(defwindow left_column
+  :focusable false
+  (left_column))
+
+(defwindow mpris_controls
+  :focusable false
+  (mpris_controls))
