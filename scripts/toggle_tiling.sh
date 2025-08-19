@@ -29,3 +29,17 @@ else
 fi
 
 echo "$MODE" > "$STATE_FILE"
+
+# Optionally toggle a Plasma panel on a specific screen.  The
+# CYBERPLASMA_PANEL_SCREEN_ID environment variable selects which
+# screen's panel should respond when modes change.  When switching to
+# Command Mode ("grid") the panel is hidden; returning to Control Mode
+# ("free") shows it again.
+panel_screen="${CYBERPLASMA_PANEL_SCREEN_ID:-}"
+if [[ -n "$panel_screen" ]]; then
+    if [[ "$MODE" == "grid" ]]; then
+        "$HOME"/scripts/panel_visibility.sh hide "$panel_screen"
+    else
+        "$HOME"/scripts/panel_visibility.sh show "$panel_screen"
+    fi
+fi
