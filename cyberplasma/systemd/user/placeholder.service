@@ -1,0 +1,12 @@
+# Placeholder systemd user service for CyberPlasma.
+# Replace with actual unit details.
+# Limit permissions and avoid exposing sensitive paths or data.
+
+[Unit]
+Description=CyberPlasma placeholder service
+
+[Service]
+ExecStart=/usr/bin/true
+
+[Install]
+WantedBy=default.target
