@@ -3,6 +3,12 @@
   "float_filter": [
     { "class": "org.kde.plasmashell" },
     { "class": "krunner" },
-    { "class": "yakuake" }
+    { "class": "yakuake" },
+    { "class": "mpv" },
+    { "class": "vlc" },
+    { "class": "steam" },
+    { "class": "kdenlive" },
+    { "class": "^steam_app.*" },
+    { "class": "^[Ww]ine$" }
   ]
 }
