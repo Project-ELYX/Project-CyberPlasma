@@ -3,6 +3,6 @@
 (defpoll ram :interval "5s" :command "../scripts/ram.sh" :json true)
 
 (defwidget top_bar []
-  (box :class "top-bar" :space-evenly true
+  (box :class "top-bar" :space-evenly true :hexpand true
        (label :class "cpu" :text "${cpu.usage}%")
        (label :class "ram" :text "${ram.percent}%")))

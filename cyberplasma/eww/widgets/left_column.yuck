@@ -2,7 +2,7 @@
 (defpoll net :interval "2s" :command "../scripts/net.sh eth0" :json true)
 
 (defwidget left_column []
-  (box :class "left-column" :orientation "v" :spacing 8
+  (box :class "left-column" :orientation "v" :spacing 8 :vexpand true
        (label :class "net-rx" :text "Rx ${net.rx_bytes}")
        (label :class "net-tx" :text "Tx ${net.tx_bytes}")
        (mpris_controls)))
