@@ -7,8 +7,9 @@
     { "class": "mpv" },
     { "class": "vlc" },
     { "class": "steam" },
-    { "class": "kdenlive" },
     { "class": "^steam_app.*" },
-    { "class": "^[Ww]ine$" }
+    { "class": "gamescope" },
+    { "class": "^[Ww]ine$" },
+    { "class": "kdenlive" }
   ]
 }

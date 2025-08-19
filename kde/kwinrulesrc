@@ -1,0 +1,24 @@
+[General]
+count=2
+
+[1]
+Description=EWW Widgets
+wmclass=eww
+wmclassmatch=1
+above=true
+aboverule=2
+skiptaskbar=true
+skiptaskbarrule=2
+nofocus=true
+nofocusrule=2
+
+[2]
+Description=GLava Visualizer
+wmclass=glava
+wmclassmatch=1
+above=true
+aboverule=2
+skiptaskbar=true
+skiptaskbarrule=2
+nofocus=true
+nofocusrule=2

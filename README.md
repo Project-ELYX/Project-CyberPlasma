@@ -58,6 +58,22 @@ To keep certain applications in FreeMode even when GridMode is active, create a
 window rule under *System Settings → Window Management → Window Rules* and set
 tiling to **Off** for that app.
 
+### KWin Window Rules
+The repository ships with rules to keep EWW widgets and the GLava visualizer on top, out of the taskbar and unfocusable.
+Apply them by copying the file:
+```bash
+cp kde/kwinrulesrc ~/.config/kwinrulesrc
+```
+If you already maintain your own rules, import and merge via *System Settings → Window Management → Window Rules*.
+
+### Floating exceptions
+Bismuth's `bismuth/config.json` marks media players, Steam, and game executables so they float in Command Mode. Install it with:
+```bash
+mkdir -p ~/.config/bismuth
+cp bismuth/config.json ~/.config/bismuth/
+```
+
+
 ## Screenshot
 A preview of the CyberPlasma setup:
 
