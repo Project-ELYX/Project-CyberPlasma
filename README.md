@@ -6,7 +6,7 @@ Cyberpunk-themed Plasma KDE rice kit. Main color theme right now is purple/cyan/
 - Color theming
 
 ## Prerequisites
-- KDE Plasma 5 with KWin
+- KDE Plasma 6 with KWin (X11 session required)
 - Git for cloning the repository
 - (Optional) [EWW](https://elkowar.github.io/eww/) for widget customization
 
@@ -31,6 +31,27 @@ An EWW configuration will be provided in a future update. Once available:
    eww daemon
    eww open cyberbar
    ```
+
+## GridMode and FreeMode
+CyberPlasma leverages KWin's tiling system and provides two layouts:
+
+- **GridMode** – windows snap to a predefined grid for efficient tiling.
+- **FreeMode** – windows float freely without tiling.
+
+### Hotkeys
+Use the following shortcuts to switch between modes:
+
+- `Meta+G` toggles **GridMode**.
+- `Meta+F` toggles **FreeMode**.
+
+### Persistence
+The current mode is remembered and restored on login so your preferred layout
+survives restarts.
+
+### Per-app exceptions
+To keep certain applications in FreeMode even when GridMode is active, create a
+window rule under *System Settings → Window Management → Window Rules* and set
+tiling to **Off** for that app.
 
 ## Screenshot
 A preview of the CyberPlasma setup:
