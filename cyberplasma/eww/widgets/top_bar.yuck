@@ -1,0 +1,3 @@
+# Top bar widget placeholder
+(defwidget top_bar []
+  (box :class "top-bar"))

@@ -1,0 +1,3 @@
+# Left column widget placeholder
+(defwidget left_column []
+  (box :class "left-column"))

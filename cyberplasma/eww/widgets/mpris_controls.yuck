@@ -1,0 +1,3 @@
+# MPRIS controls widget placeholder
+(defwidget mpris_controls []
+  (box :class "mpris-controls"))
