@@ -8,7 +8,8 @@ After=graphical-session.target
 
 [Service]
 ExecStart=eww daemon
-ExecStartPost=eww open cyberbar
+ExecStartPost=eww open top_bar
+ExecStartPost=eww open left_column
 Restart=on-failure
 
 [Install]
