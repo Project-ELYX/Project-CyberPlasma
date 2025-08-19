@@ -1,3 +1,39 @@
-/* Placeholder SCSS for CyberPlasma theme. */
-/* Define mixins and styles securely. */
-/* Do not import untrusted code or expose sensitive data. */
+/* CyberPlasma styles using colors from theme.env */
+* {
+  all: unset;
+  box-sizing: border-box;
+}
+
+$bg: env(BG);
+$fg: env(FG);
+$panel: env(PANEL);
+$accent: env(ACCENT);
+$border: env(BORDER);
+
+.top-bar {
+  background-color: $panel;
+  color: $fg;
+  border-bottom: 1px solid $border;
+}
+
+.left-column {
+  background-color: $bg;
+  color: $fg;
+  border-right: 1px solid $border;
+}
+
+.mpris-controls {
+  background-color: $panel;
+  color: $fg;
+  padding: 0.5rem;
+
+  button {
+    background: transparent;
+    color: $accent;
+    padding: 0.25rem;
+
+    &:hover {
+      background-color: $border;
+    }
+  }
+}
