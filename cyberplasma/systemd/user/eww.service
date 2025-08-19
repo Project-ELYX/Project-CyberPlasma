@@ -1,0 +1,15 @@
+# CyberPlasma EWW widgets service.
+# Requires the `eww` executable to be installed.
+# Limit permissions and avoid exposing sensitive paths or data.
+
+[Unit]
+Description=CyberPlasma EWW widgets
+After=graphical-session.target
+
+[Service]
+ExecStart=eww daemon
+ExecStartPost=eww open cyberbar
+Restart=on-failure
+
+[Install]
+WantedBy=cyberplasma.target

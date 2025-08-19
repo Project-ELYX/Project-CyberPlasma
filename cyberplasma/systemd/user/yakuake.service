@@ -1,0 +1,14 @@
+# CyberPlasma Yakuake drop-down terminal service.
+# Requires the `yakuake` executable to be installed.
+# Limit permissions and avoid exposing sensitive paths or data.
+
+[Unit]
+Description=CyberPlasma Yakuake
+After=graphical-session.target
+
+[Service]
+ExecStart=yakuake
+Restart=on-failure
+
+[Install]
+WantedBy=cyberplasma.target
