@@ -26,10 +26,11 @@ All helper scripts in `cyberplasma/scripts` are POSIX-compliant and run without 
    ```
 3. Enable the theme from *System Settings → Appearance → Window Decorations*.
 
-### Future EWW Config
-An EWW configuration will be provided in a future update. Once available:
-1. Copy the `eww/` directory to `~/.config/eww`.
-2. Start the daemon and open the widgets:
+### EWW Setup
+A basic EWW configuration is included under `cyberplasma/eww`:
+1. Copy `cyberplasma/eww` to `~/.config/eww`.
+2. Copy `cyberplasma/style.scss` to `~/.config/style.scss`.
+3. Start the daemon and open the widgets:
    ```bash
    eww daemon
    eww open top_bar
@@ -43,10 +44,8 @@ CyberPlasma leverages KWin's tiling system and provides two layouts:
 - **FreeMode** – windows float freely without tiling.
 
 ### Hotkeys
-Use the following shortcuts to switch between modes:
+Use the following shortcuts for tiling and HUD layout:
 
-- `Meta+G` toggles **GridMode**.
-- `Meta+F` toggles **FreeMode**.
 - `Meta+T`, `Meta+Shift+T`, and `Meta+Alt+T` toggle Bismuth tiling on or off.
 - `Meta+F6` cycles forward through HUD layout presets.
 - `Meta+F7` cycles backward through HUD layout presets.
@@ -77,7 +76,3 @@ cp bismuth/config.json ~/.config/bismuth/
 ```
 
 
-## Screenshot
-A preview of the CyberPlasma setup:
-
-![CyberPlasma screenshot](screenshot.png)
