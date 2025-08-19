@@ -28,3 +28,24 @@ systemctl --user enable --now cyberplasma.target
 ```
 
 This will pull in the individual services via `WantedBy=cyberplasma.target`.
+
+## Plasma Panel Setup
+The tiling toggle integrates with a helper script that can hide a
+Plasma panel on a specific screen when entering **Command Mode** and
+show it again for **Control Mode**.  Determine the screen ID of the
+panel you want managed:
+
+```bash
+qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.panelIds
+qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript 'panelById(PANEL_ID).screen'
+```
+
+Export `CYBERPLASMA_PANEL_SCREEN_ID` with the desired screen number so
+`toggle_tiling.sh` knows which panel to control.
+
+```bash
+export CYBERPLASMA_PANEL_SCREEN_ID=1
+```
+
+Copy the `panel_visibility.sh` script to `~/scripts/` if it is not
+already present.
