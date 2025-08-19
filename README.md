@@ -48,6 +48,9 @@ Use the following shortcuts to switch between modes:
 - `Meta+G` toggles **GridMode**.
 - `Meta+F` toggles **FreeMode**.
 - `Meta+T`, `Meta+Shift+T`, and `Meta+Alt+T` toggle Bismuth tiling on or off.
+- `Meta+F6` cycles forward through HUD layout presets.
+- `Meta+F7` cycles backward through HUD layout presets.
+- `Meta+Alt+Arrow` keys nudge HUD blocks and persist the new layout.
 
 ### Persistence
 The current mode is remembered and restored on login so your preferred layout
