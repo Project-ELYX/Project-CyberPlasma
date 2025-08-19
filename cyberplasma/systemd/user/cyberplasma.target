@@ -1,0 +1,8 @@
+# CyberPlasma target for grouping related user services.
+# Limit permissions and avoid exposing sensitive paths or data.
+
+[Unit]
+Description=CyberPlasma target
+
+[Install]
+WantedBy=default.target

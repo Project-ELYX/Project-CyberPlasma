@@ -1,0 +1,14 @@
+# CyberPlasma GLava visualizer service.
+# Requires the `glava` executable to be installed.
+# Limit permissions and avoid exposing sensitive paths or data.
+
+[Unit]
+Description=CyberPlasma GLava visualizer
+After=graphical-session.target
+
+[Service]
+ExecStart=glava
+Restart=on-failure
+
+[Install]
+WantedBy=cyberplasma.target
