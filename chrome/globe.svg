@@ -1,0 +1,28 @@
+<svg viewBox="0 0 340 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Frame -->
+  <g class="cp-chrome" stroke="currentColor" stroke-width="2" fill="none">
+    <path d="M0,14 L14,0 H326 L340,14 V286 L326,300 H14 L0,286 Z"/>
+  </g>
+  <!-- Globe bezel (circle area = map) -->
+  <g class="cp-chrome" stroke="currentColor" stroke-width="1.5" fill="none">
+    <circle cx="170" cy="152" r="96"/>
+  </g>
+  <!-- Latitude/Longitude light grid -->
+  <g class="cp-chrome" stroke="currentColor" stroke-width="0.8" opacity="0.35" fill="none">
+    <circle cx="170" cy="152" r="64"/>
+    <circle cx="170" cy="152" r="32"/>
+    <path d="M170,56 V248"/>
+    <path d="M106,152 H234"/>
+    <path d="M142,92 A78 78 0 0 0 198 92"/>
+    <path d="M142,212 A78 78 0 0 1 198 212"/>
+  </g>
+  <!-- Endpoint pin slot (we'll draw pin via EWW) -->
+  <g id="pin-slot">
+    <rect x="120" y="102" width="100" height="100" fill="none"/>
+  </g>
+  <!-- Header/footer text slots -->
+  <g class="cp-accent" stroke="currentColor" stroke-width="1.5" fill="none">
+    <rect x="16" y="16" width="308" height="28" rx="6"/>
+    <rect x="16" y="256" width="308" height="28" rx="6"/>
+  </g>
+</svg>

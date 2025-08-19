@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg">
+  <!-- frame -->
+  <g class="cp-chrome" stroke="currentColor" stroke-width="2" fill="none">
+    <path d="M0,12 L12,0 H508 L520,12 V138 L508,150 H12 L0,138 Z"/>
+  </g>
+
+  <!-- button hit zones -->
+  <g id="btn-prev"      class="cp-accent" stroke="currentColor" stroke-width="1.5" fill="none">
+    <rect x="16"  y="14" width="56" height="56" rx="10"/>
+  </g>
+  <g id="btn-playpause" class="cp-accent" stroke="currentColor" stroke-width="1.8" fill="none">
+    <rect x="232" y="6"  width="56" height="56" rx="14"/>
+  </g>
+  <g id="btn-next"      class="cp-accent" stroke="currentColor" stroke-width="1.5" fill="none">
+    <rect x="448" y="14" width="56" height="56" rx="10"/>
+  </g>
+
+  <!-- progress slot (moved slightly down) -->
+  <g id="progress" class="cp-chrome" stroke="currentColor" stroke-width="1" fill="none" opacity="0.45">
+    <rect x="88" y="38" width="328" height="14" rx="7"/>
+  </g>
+
+  <!-- title area (lowered + slightly taller) -->
+  <rect id="title-area" x="16" y="88" width="488" height="26" fill="none" stroke="none"/>
+
+  <!-- time ticks (stay near bottom) -->
+  <g class="cp-accent" stroke="currentColor" stroke-width="1" fill="none" opacity="0.8">
+    <line x1="16"  y1="128" x2="72"  y2="128"/>
+    <line x1="448" y1="128" x2="504" y2="128"/>
+  </g>
+</svg>

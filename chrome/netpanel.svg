@@ -1,0 +1,33 @@
+<svg viewBox="0 0 360 260" xmlns="http://www.w3.org/2000/svg">
+  <!-- Panel frame with chamfers -->
+  <g class="cp-chrome" stroke="currentColor" stroke-width="2" fill="none">
+    <path d="M0,14 L14,0 H346 L360,14 V246 L346,260 H14 L0,246 Z"/>
+  </g>
+  <!-- Header strip (title + VPN badge slot @ right) -->
+  <g class="cp-accent" stroke="currentColor" fill="none" stroke-width="1.5">
+    <rect x="16" y="16" width="328" height="28" rx="6"/>
+    <rect x="312" y="18" width="28" height="24" rx="4"/>
+  </g>
+  <!-- IP rows & dividers -->
+  <g class="cp-chrome" stroke="currentColor" stroke-width="1" opacity="0.5">
+    <line x1="16" y1="60" x2="344" y2="60"/>
+    <line x1="16" y1="100" x2="344" y2="100"/>
+  </g>
+  <!-- Sparkline slot -->
+  <g id="sparkline-slot" class="cp-chrome" stroke="currentColor" stroke-width="1" fill="none" opacity="0.4">
+    <rect x="20" y="116" width="320" height="48" rx="6"/>
+  </g>
+  <!-- Footer labels line -->
+  <g class="cp-chrome" stroke="currentColor" stroke-width="1" opacity="0.5">
+    <line x1="16" y1="184" x2="344" y2="184"/>
+  </g>
+  <!-- Content safe zones (for EWW text) -->
+  <g id="slots" class="cp-text">
+    <!-- Local IP -->
+    <rect x="20" y="68" width="320" height="24" fill="none"/>
+    <!-- Public IP -->
+    <rect x="20" y="108" width="320" height="24" fill="none"/>
+    <!-- Footer: iface/state/ping -->
+    <rect x="20" y="192" width="320" height="56" fill="none"/>
+  </g>
+</svg>
