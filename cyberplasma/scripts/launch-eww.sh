@@ -11,14 +11,16 @@ if ! eww ping >/dev/null 2>&1; then
 fi
 
 # Parse connected monitors and their geometry
-xrandr --query | awk '/ connected/{print $1, $3}' | while read -r name geometry; do
-  # Extract width, height and offsets from the geometry string: 1920x1080+0+0
-  width=${geometry%%x*}
-  rest=${geometry#*x}
-  height=${rest%%+*}
-  offset_x=${rest#*+}
-  offset_y=${offset_x#*+}
-  offset_x=${offset_x%%+*}
+xrandr --query | awk '/ connected/{for(i=1;i<=NF;i++) if ($i ~ /[0-9]+x[0-9]+\+/){print $1, $i}}' | while read -r name geometry; do
+  # Ensure geometry token matches WIDTHxHEIGHT+X+Y
+  if [[ $geometry =~ ^([0-9]+)x([0-9]+)\+([0-9]+)\+([0-9]+)$ ]]; then
+    width=${BASH_REMATCH[1]}
+    height=${BASH_REMATCH[2]}
+    offset_x=${BASH_REMATCH[3]}
+    offset_y=${BASH_REMATCH[4]}
+  else
+    continue
+  fi
 
   # Open widgets on the given monitor. Geometry inside config.yuck
   # is relative to the screen, so the coordinates computed above are
