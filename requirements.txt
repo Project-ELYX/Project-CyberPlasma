@@ -1,0 +1,2 @@
+# Python dependencies for CyberPlasma
+pytest>=7.0
