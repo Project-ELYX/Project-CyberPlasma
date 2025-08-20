@@ -1,0 +1,12 @@
+# Apply saved screen modes at login.
+# Runs the apply_screen_modes script if modes are saved.
+
+[Unit]
+Description=Apply saved screen modes
+After=graphical-session.target
+
+[Service]
+ExecStart=%h/scripts/apply_screen_modes.sh
+
+[Install]
+WantedBy=cyberplasma.target
