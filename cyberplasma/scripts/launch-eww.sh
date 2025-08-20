@@ -2,6 +2,7 @@
 # Launch Eww widgets for each connected monitor using --screen.
 # Determines monitor geometry via xrandr.
 set -euo pipefail
+MODE=${CYBERPLASMA_MODE:-command}
 
 # Load theme variables so Eww can resolve color references
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -31,11 +32,14 @@ xrandr --query | awk '/ connected/{for(i=1;i<=NF;i++) if ($i ~ /[0-9]+x[0-9]+\+/
   # Open widgets on the given monitor. Geometry inside config.yuck
   # is relative to the screen, so the coordinates computed above are
   # primarily informational and available for potential future use.
-  eww open top_bar --screen "$name"
+  if [[ "$MODE" == "control" ]]; then
+    eww open control_strip --screen "$name"
+  else
+    eww open top_bar --screen "$name"
+  fi
   eww open left_column --screen "$name"
 done
 
 # Optionally open standalone mpris controls on the primary monitor
 # only if desired by users of this script. Commented out by default.
 # eww open mpris_controls --screen "$(xrandr --query | awk '/ primary/{print $1}')"
-
