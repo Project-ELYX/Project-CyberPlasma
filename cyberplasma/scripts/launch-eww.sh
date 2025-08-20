@@ -3,6 +3,12 @@
 # Determines monitor geometry via xrandr.
 set -euo pipefail
 
+# Load theme variables so Eww can resolve color references
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+set -a
+source "${SCRIPT_DIR}/../theme.env"
+set +a
+
 # Start the daemon if not already running
 if ! eww ping >/dev/null 2>&1; then
   eww daemon
