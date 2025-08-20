@@ -59,10 +59,15 @@ def current_screen() -> str:
     except Exception:
         return "unknown"
 
+    first_connected: str | None = None
     for line in output.splitlines():
         if " connected" in line:
-            return line.split()[0]
-    return "unknown"
+            screen = line.split()[0]
+            if " primary" in line:
+                return screen
+            if first_connected is None:
+                first_connected = screen
+    return first_connected or "unknown"
 
 
 def current_mode() -> str:
