@@ -4,8 +4,12 @@
 set -euo pipefail
 MODE=${CYBERPLASMA_MODE:-command}
 
-# Load theme variables so Eww can resolve color references
+# Determine repository root for asset resolution and export for Eww widgets
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+CYBERPLASMA_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
+export CYBERPLASMA_ROOT
+
+# Load theme variables so Eww can resolve color references
 set -a
 source "${SCRIPT_DIR}/../theme.env"
 set +a

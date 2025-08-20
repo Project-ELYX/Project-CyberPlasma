@@ -2,11 +2,11 @@
 (defwidget mpris_controls [status]
   (box :class "mpris-controls" :spacing 8
        (button :class "mpris-prev" :onclick "playerctl previous"
-               (image :path "../../../icons/mediabutton_previous.svg" :width 24 :height 24))
+               (image :path (format "%s/icons/mediabutton_previous.svg" (getenv "CYBERPLASMA_ROOT")) :width 24 :height 24))
        (button :class "mpris-play" :onclick "playerctl play-pause"
                (image :path (if (= status "playing")
-                                "../../../icons/mediabutton_pause.svg"
-                                "../../../icons/mediabutton_play.svg")
+                                (format "%s/icons/mediabutton_pause.svg" (getenv "CYBERPLASMA_ROOT"))
+                                (format "%s/icons/mediabutton_play.svg" (getenv "CYBERPLASMA_ROOT")))
                       :width 24 :height 24))
        (button :class "mpris-next" :onclick "playerctl next"
-               (image :path "../../../icons/mediabutton_next.svg" :width 24 :height 24))))
+               (image :path (format "%s/icons/mediabutton_next.svg" (getenv "CYBERPLASMA_ROOT")) :width 24 :height 24))))

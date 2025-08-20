@@ -16,12 +16,12 @@
 
 (defwidget left_column []
   (overlay :class "vitals-panel" :width 420 :height 220
-           (image :path "../../../chrome/vitals_panel_skinned.svg")
+           (image :path (format "%s/chrome/vitals_panel_skinned.svg" (getenv "CYBERPLASMA_ROOT")))
            ;; Icon seats
-           (image :path "../../../icons/icon_temp.svg" :x "78" :y "36" :width "24" :height "24")
-           (image :path "../../../icons/icon_command_mode.svg" :x "78" :y "68" :width "24" :height "24")
-           (image :path "../../../icons/icon_cpu.svg" :x "78" :y "100" :width "24" :height "24")
-           (image :path "../../../icons/icon_battery.svg" :x "78" :y "132" :width "24" :height "24")
+           (image :path (format "%s/icons/icon_temp.svg" (getenv "CYBERPLASMA_ROOT")) :x "78" :y "36" :width "24" :height "24")
+           (image :path (format "%s/icons/icon_command_mode.svg" (getenv "CYBERPLASMA_ROOT")) :x "78" :y "68" :width "24" :height "24")
+           (image :path (format "%s/icons/icon_cpu.svg" (getenv "CYBERPLASMA_ROOT")) :x "78" :y "100" :width "24" :height "24")
+           (image :path (format "%s/icons/icon_battery.svg" (getenv "CYBERPLASMA_ROOT")) :x "78" :y "132" :width "24" :height "24")
            ;; Value slots
            (box :x "110" :y "40" :width "290" :height "20" :halign "start" :valign "center"
                 (label :class "temps" :text "CPU ${temp.temp}°C"))
