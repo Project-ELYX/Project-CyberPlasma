@@ -17,6 +17,26 @@
 (defpoll mpris :interval "2s" :command "../scripts/mpris.sh" :json true)
 
 (defwidget top_bar []
+
+  (box :class "top-bar" :space-evenly true :hexpand true
+       ;; Time/Date
+       (label :class "datetime cp-text" :text "${datetime}")
+       ;; Gauges
+       (progress :class "cpu cp-accent" :value cpu.usage :max 100)
+       (progress :class "ram cp-accent" :value ram.percent :max 100)
+       (progress :class "temp cp-accent" :value temp.temp :max 100)
+       ;; Network rates
+       (label :class "net-rx cp-text" :text "Rx ${net.rx_kBps} kB/s")
+       (label :class "net-tx cp-text" :text "Tx ${net.tx_kBps} kB/s")
+       ;; IP information
+       (label :class "vpn cp-text" :text "VPN ${vpn.vpn}")
+       (label :class "local-ip cp-text" :text "${local_ip[net.interface]}")
+       (label :class "public-ip cp-text" :text "${public_ip.ip}")
+       ;; Now playing with controls
+       (box :class "mpris" :spacing 4
+            (label :class "mpris-text cp-text" :text "${mpris.artist} - ${mpris.title}")
+            (mpris_controls))))
+
   (overlay :class "top-bar" :width 1920 :height 56
            (image :path (format "%s/chrome/control_strip_skinned.svg" (getenv "CYBERPLASMA_ROOT")))
            ;; Network slot
@@ -28,6 +48,9 @@
                        :path (if vpn.vpn
                                  (format "%s/icons/icon_vpn_on.svg" (getenv "CYBERPLASMA_ROOT"))
                                  (format "%s/icons/icon_vpn_off.svg" (getenv "CYBERPLASMA_ROOT")))))
+               (label :class "public-ip" :text "${public_ip.ip}")
+               (image :class (if vpn.vpn "vpn-icon cp-accent" "vpn-icon cp-muted") :width 16 :height 16
+                       :path (if vpn.vpn "../../../icons/icon_vpn_on.svg" "../../../icons/icon_vpn_off.svg")))
            ;; Media controls slot
            (box :class "slot-media" :x "650" :y "12" :width "500" :height "32" :halign "start" :valign "center" :spacing 4
                 (mpris_controls :status mpris.status)
@@ -38,7 +61,12 @@
                 (label :class "cpu" :text "${cpu.usage}%")
                 (image :path (format "%s/icons/icon_temp.svg" (getenv "CYBERPLASMA_ROOT")) :width 16 :height 16)
                 (label :class "temp" :text "${temp.temp}°C")
+               (image :class "cp-chrome" :path "../../../icons/icon_cpu.svg" :width 16 :height 16)
+               (label :class "cpu" :text "${cpu.usage}%")
+               (image :class "cp-chrome" :path "../../../icons/icon_temp.svg" :width 16 :height 16)
+               (label :class "temp" :text "${temp.temp}°C")
                 (label :class "ram" :text "${ram.percent}%"))
            ;; Time slot
            (box :class "slot-time" :x "1590" :y "12" :width "280" :height "32" :halign "center" :valign "center"
                 (label :class "datetime" :text "${datetime}"))))
+

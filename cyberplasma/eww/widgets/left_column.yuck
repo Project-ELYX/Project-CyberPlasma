@@ -15,6 +15,21 @@
 (defpoll power :interval "30s" :command "sh -c 'if [ -r /sys/class/power_supply/AC/online ] && [ $(cat /sys/class/power_supply/AC/online) -eq 1 ]; then echo AC; elif [ -r /sys/class/power_supply/BAT0/capacity ]; then printf \"DC %s%%\" $(cat /sys/class/power_supply/BAT0/capacity); else echo AC; fi'")
 
 (defwidget left_column []
+
+  (box :class "left-column" :orientation "v" :spacing 8 :vexpand true
+       ;; Gauges
+       (progress :class "cpu cp-accent" :value cpu.usage :max 100)
+       (progress :class "ram cp-accent" :value ram.percent :max 100)
+       (progress :class "temp cp-accent" :value temp.temp :max 100)
+       ;; Network metrics
+       (box :class "net" :spacing 4
+            (label :class "net-rx cp-text" :text "Rx ${net.rx_kBps} kB/s")
+            (label :class "net-tx cp-text" :text "Tx ${net.tx_kBps} kB/s"))
+       ;; Top processes by CPU
+       (box :class "procs" :orientation "v"
+            (for proc top_procs
+                 (label :class "proc cp-text" :text "${proc.cmd} ${proc.cpu}%")))))
+
   (overlay :class "vitals-panel" :width 420 :height 220
            (image :path (format "%s/chrome/vitals_panel_skinned.svg" (getenv "CYBERPLASMA_ROOT")))
            ;; Icon seats
@@ -22,6 +37,9 @@
            (image :path (format "%s/icons/icon_command_mode.svg" (getenv "CYBERPLASMA_ROOT")) :x "78" :y "68" :width "24" :height "24")
            (image :path (format "%s/icons/icon_cpu.svg" (getenv "CYBERPLASMA_ROOT")) :x "78" :y "100" :width "24" :height "24")
            (image :path (format "%s/icons/icon_battery.svg" (getenv "CYBERPLASMA_ROOT")) :x "78" :y "132" :width "24" :height "24")
+           (image :class "cp-chrome" :path "../../../icons/icon_temp.svg" :x "78" :y "36" :width "24" :height "24")
+           (image :class "cp-accent2" :path "../../../icons/icon_command_mode.svg" :x "78" :y "68" :width "24" :height "24")
+           (image :class "cp-chrome" :path "../../../icons/icon_cpu.svg" :x "78" :y "100" :width "24" :height "24")
            ;; Value slots
            (box :x "110" :y "40" :width "290" :height "20" :halign "start" :valign "center"
                 (label :class "temps" :text "CPU ${temp.temp}°C"))
