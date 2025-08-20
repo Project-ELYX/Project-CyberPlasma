@@ -16,6 +16,9 @@
 ;; Media info
 (defpoll mpris :interval "2s" :command "../scripts/mpris.sh" :json true)
 
+(defwidget top_bar [width]
+  (overlay :class "top-bar" :width width :height 56
+           (image :path "../../../chrome/control_strip_skinned.svg")
 (defwidget top_bar []
 
   (box :class "top-bar" :space-evenly true :hexpand true
@@ -36,7 +39,6 @@
        (box :class "mpris" :spacing 4
             (label :class "mpris-text cp-text" :text "${mpris.artist} - ${mpris.title}")
             (mpris_controls))))
-
   (overlay :class "top-bar" :width 1920 :height 56
            (image :path (format "%s/chrome/control_strip_skinned.svg" (getenv "CYBERPLASMA_ROOT")))
            ;; Network slot

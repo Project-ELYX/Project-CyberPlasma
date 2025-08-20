@@ -1,4 +1,6 @@
 ;; Control strip widget using the skinned SVG
+(defwidget control_strip [width]
+  (svg :path "../../../chrome/control_strip_skinned.svg" :width width
 (defwidget control_strip []
   (svg :path (format "%s/chrome/control_strip_skinned.svg" (getenv "CYBERPLASMA_ROOT"))
        (slot slot-pins (box :class "slot-pins"))
