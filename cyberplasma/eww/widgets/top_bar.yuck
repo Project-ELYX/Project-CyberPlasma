@@ -19,19 +19,19 @@
 (defwidget top_bar []
   (box :class "top-bar" :space-evenly true :hexpand true
        ;; Time/Date
-       (label :class "datetime" :text "${datetime}")
+       (label :class "datetime cp-text" :text "${datetime}")
        ;; Gauges
-       (progress :class "cpu" :value cpu.usage :max 100)
-       (progress :class "ram" :value ram.percent :max 100)
-       (progress :class "temp" :value temp.temp :max 100)
+       (progress :class "cpu cp-accent" :value cpu.usage :max 100)
+       (progress :class "ram cp-accent" :value ram.percent :max 100)
+       (progress :class "temp cp-accent" :value temp.temp :max 100)
        ;; Network rates
-       (label :class "net-rx" :text "Rx ${net.rx_kBps} kB/s")
-       (label :class "net-tx" :text "Tx ${net.tx_kBps} kB/s")
+       (label :class "net-rx cp-text" :text "Rx ${net.rx_kBps} kB/s")
+       (label :class "net-tx cp-text" :text "Tx ${net.tx_kBps} kB/s")
        ;; IP information
-       (label :class "vpn" :text "VPN ${vpn.vpn}")
-       (label :class "local-ip" :text "${local_ip[net.interface]}")
-       (label :class "public-ip" :text "${public_ip.ip}")
+       (label :class "vpn cp-text" :text "VPN ${vpn.vpn}")
+       (label :class "local-ip cp-text" :text "${local_ip[net.interface]}")
+       (label :class "public-ip cp-text" :text "${public_ip.ip}")
        ;; Now playing with controls
        (box :class "mpris" :spacing 4
-            (label :class "mpris-text" :text "${mpris.artist} - ${mpris.title}")
+            (label :class "mpris-text cp-text" :text "${mpris.artist} - ${mpris.title}")
             (mpris_controls))))

@@ -8,28 +8,65 @@ $bg: env(BG);
 $fg: env(FG);
 $panel: env(PANEL);
 $accent: env(ACCENT);
+$accent2: env(ACCENT_ALT);
 $border: env(BORDER);
+$muted: env(MUTED);
+$ok: env(OK);
+$warn: env(WARN);
+$err: env(ERR);
+
+.cp-chrome {
+  color: $fg;
+}
+
+.cp-accent {
+  color: $accent;
+}
+
+.cp-accent2 {
+  color: $accent2;
+}
+
+.cp-text {
+  color: $fg;
+}
+
+.cp-muted {
+  color: $muted;
+}
+
+.cp-ok {
+  color: $ok;
+}
+
+.cp-warn {
+  color: $warn;
+}
+
+.cp-err {
+  color: $err;
+}
 
 .top-bar {
+  @extend .cp-chrome;
   background-color: $panel;
-  color: $fg;
   border-bottom: 1px solid $border;
 }
 
 .left-column {
+  @extend .cp-chrome;
   background-color: $bg;
-  color: $fg;
   border-right: 1px solid $border;
 }
 
 .mpris-controls {
+  @extend .cp-chrome;
   background-color: $panel;
-  color: $fg;
   padding: 0.5rem;
 
   button {
+    @extend .cp-accent;
     background: transparent;
-    color: $accent;
     padding: 0.25rem;
 
     &:hover {

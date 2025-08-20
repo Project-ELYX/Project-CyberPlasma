@@ -14,14 +14,14 @@
 (defwidget left_column []
   (box :class "left-column" :orientation "v" :spacing 8 :vexpand true
        ;; Gauges
-       (progress :class "cpu" :value cpu.usage :max 100)
-       (progress :class "ram" :value ram.percent :max 100)
-       (progress :class "temp" :value temp.temp :max 100)
+       (progress :class "cpu cp-accent" :value cpu.usage :max 100)
+       (progress :class "ram cp-accent" :value ram.percent :max 100)
+       (progress :class "temp cp-accent" :value temp.temp :max 100)
        ;; Network metrics
        (box :class "net" :spacing 4
-            (label :class "net-rx" :text "Rx ${net.rx_kBps} kB/s")
-            (label :class "net-tx" :text "Tx ${net.tx_kBps} kB/s"))
+            (label :class "net-rx cp-text" :text "Rx ${net.rx_kBps} kB/s")
+            (label :class "net-tx cp-text" :text "Tx ${net.tx_kBps} kB/s"))
        ;; Top processes by CPU
        (box :class "procs" :orientation "v"
             (for proc top_procs
-                 (label :class "proc" :text "${proc.cmd} ${proc.cpu}%")))))
+                 (label :class "proc cp-text" :text "${proc.cmd} ${proc.cpu}%")))))
