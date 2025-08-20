@@ -1,6 +1,9 @@
 ;; Media player controls using playerctl
 (defwidget mpris_controls []
   (box :class "mpris-controls" :space-evenly true
-       (button :class "mpris-prev" :onclick "playerctl previous" "⏮")
-       (button :class "mpris-play" :onclick "playerctl play-pause" "⏯")
-       (button :class "mpris-next" :onclick "playerctl next" "⏭")))
+       (image :class "mpris-prev" :onclick "playerctl previous"
+              :path "../../../icons/mediabutton_previous.svg")
+       (image :class "mpris-play" :onclick "playerctl play-pause"
+              :path "${mpris.status == \"playing\" ? \"../../../icons/mediabutton_pause.svg\" : \"../../../icons/mediabutton_play.svg\"}")
+       (image :class "mpris-next" :onclick "playerctl next"
+              :path "../../../icons/mediabutton_next.svg")))
