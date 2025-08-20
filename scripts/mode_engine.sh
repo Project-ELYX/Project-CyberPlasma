@@ -8,16 +8,30 @@
 
 set -euo pipefail
 
+# Ensure required commands are available
+for cmd in jq xrandr; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+        echo "Error: $cmd is required but not installed" >&2
+        exit 1
+    fi
+done
+
 STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}"
 STATE_FILE="$STATE_DIR/cyberplasma_modes.json"
 
 mkdir -p "$STATE_DIR"
-[[ -f "$STATE_FILE" ]] || echo '{}' > "$STATE_FILE"
+touch "$STATE_FILE"
+exec 9<>"$STATE_FILE"
+flock 9
+[[ -s "$STATE_FILE" ]] || echo '{}' > "$STATE_FILE"
+flock -u 9
 
 save_mode() {
     local screen="$1" mode="$2"
+    flock 9
     jq --arg s "$screen" --arg m "$mode" '.[$s]=$m' "$STATE_FILE" \
         >"$STATE_FILE.tmp" && mv "$STATE_FILE.tmp" "$STATE_FILE"
+    flock -u 9
 }
 
 apply_mode() {
