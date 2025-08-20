@@ -13,14 +13,14 @@
   :focusable false
   :wm-ignore true
   :stacking "overlay"
-  :geometry (geometry :anchor "top left" :x "0px" :y "0px" :width "100%" :height "30px")
+  :geometry (geometry :anchor "top left" :x "0px" :y "0px" :width "1920px" :height "56px")
   (top_bar))
 
 (defwindow left_column
   :focusable false
   :wm-ignore true
   :stacking "overlay"
-  :geometry (geometry :anchor "left center" :x "0px" :y "0px" :width "220px" :height "100%")
+  :geometry (geometry :anchor "top left" :x "0px" :y "0px" :width "420px" :height "220px")
   (left_column))
 
 (defwindow mpris_controls
