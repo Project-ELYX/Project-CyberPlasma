@@ -1,10 +1,41 @@
 ;; Control strip widget using the skinned SVG
+
+;; Time and date
+(defpoll datetime :interval "1s" :command "date +'%Y-%m-%d %H:%M:%S'")
+
+;; System gauges
+(defpoll cpu :interval "1s" :command "../scripts/cpu.sh" :json true)
+(defpoll ram :interval "5s" :command "../scripts/ram.sh" :json true)
+(defpoll temp :interval "5s" :command "../scripts/temp.sh cpu_thermal_zone" :json true)
+
+;; Network and IP information
+(defpoll net :interval "2s" :command "../scripts/net.sh $(../scripts/default_iface.sh)" :json true)
+(defpoll vpn :interval "10s" :command "../scripts/vpn.sh" :json true)
+(defpoll local_ip :interval "60s" :command "../scripts/local_ip.sh" :json true)
+(defpoll public_ip :interval "60s" :command "../scripts/public_ip.sh" :json true)
+
+;; Media info
+(defpoll mpris :interval "2s" :command "../scripts/mpris.sh" :json true)
+
 (defwidget control_strip []
   (svg :path "../../../chrome/control_strip_skinned.svg"
        (slot slot-pins (box :class "slot-pins"))
-       (slot slot-net (box :class "slot-net"))
+       (slot slot-net (box :class "slot-net" :halign "start" :valign "center" :spacing 4
+                                  (label :class "iface" :text "${net.interface}")
+                                  (label :class "local-ip" :text "${local_ip[net.interface]}")
+                                  (label :class "public-ip" :text "${public_ip.ip}")
+                                  (image :class "vpn-icon" :width 16 :height 16
+                                         :path (if vpn.vpn "../../../icons/icon_vpn_on.svg" "../../../icons/icon_vpn_off.svg"))))
        (slot slot-viz (box :class "slot-viz"))
-       (slot slot-media (box :class "slot-media"))
-       (slot slot-sysmini (box :class "slot-sysmini"))
-       (slot slot-time (box :class "slot-time"))
+       (slot slot-media (box :class "slot-media" :halign "start" :valign "center" :spacing 4
+                                   (mpris_controls :status mpris.status)
+                                   (label :class "mpris-text" :text "${mpris.artist} - ${mpris.title}")))
+       (slot slot-sysmini (box :class "slot-sysmini" :halign "start" :valign "center" :spacing 8
+                                   (image :path "../../../icons/icon_cpu.svg" :width 16 :height 16)
+                                   (label :class "cpu" :text "${cpu.usage}%")
+                                   (image :path "../../../icons/icon_temp.svg" :width 16 :height 16)
+                                   (label :class "temp" :text "${temp.temp}°C")
+                                   (label :class "ram" :text "${ram.percent}%")))
+       (slot slot-time (box :class "slot-time" :halign "center" :valign "center"
+                            (label :class "datetime" :text "${datetime}")))
        (slot slot-modebadge (box :class "slot-modebadge"))))

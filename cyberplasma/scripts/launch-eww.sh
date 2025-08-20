@@ -34,8 +34,6 @@ xrandr --query | awk '/ connected/{for(i=1;i<=NF;i++) if ($i ~ /[0-9]+x[0-9]+\+/
   # primarily informational and available for potential future use.
   if [[ "$MODE" == "control" ]]; then
     eww open control_strip --screen "$name"
-  else
-    eww open top_bar --screen "$name"
   fi
   eww open left_column --screen "$name"
 done
