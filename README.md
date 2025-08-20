@@ -8,12 +8,19 @@ Cyberpunk-themed Plasma KDE rice kit. Main color theme right now is purple/cyan/
 ## Prerequisites
 - KDE Plasma 6 with KWin (X11 session required)
 - Git for cloning the repository
+- playerctl for media control
+- jq for JSON processing
+- curl for data retrieval
+- lm-sensors for temperature monitoring
 - (Optional) [EWW](https://elkowar.github.io/eww/) for widget customization
 
 ## Security
 All helper scripts in `cyberplasma/scripts` are POSIX-compliant and run without elevated privileges. Inputs are sanitized, and network requests include fixed timeouts. The project operates entirely in user space without requiring escalated permissions. Continuous integration runs ShellCheck to maintain script quality.
 
 ## Installation
+Optional packages:
+- [GLava](https://github.com/jarcode-foss/glava) for an OpenGL audio visualizer
+- [EWW](https://elkowar.github.io/eww/) for widget customization
 
 ### Window Decorations
 1. Create the Aurorae theme directory:
