@@ -17,10 +17,8 @@
 ;; Media info
 (defpoll mpris :interval "2s" :command "../scripts/mpris.sh" :json true)
 
-(defwidget control_strip [width]
-  (svg :path "../../../chrome/control_strip_skinned.svg" :width width
 (defwidget control_strip []
-  (svg :path (format "%s/chrome/control_strip_skinned.svg" (getenv "CYBERPLASMA_ROOT"))
+  (svg :path "../../../chrome/control_strip_skinned.svg"
        (slot slot-pins (box :class "slot-pins"))
        (slot slot-net (box :class "slot-net" :halign "start" :valign "center" :spacing 4
                                   (label :class "iface" :text "${net.interface}")
@@ -40,9 +38,4 @@
                                    (label :class "ram" :text "${ram.percent}%")))
        (slot slot-time (box :class "slot-time" :halign "center" :valign "center"
                             (label :class "datetime" :text "${datetime}")))
-        (slot slot-net (box :class "slot-net"))
-        (slot slot-viz (box :class "slot-viz"))
-        (slot slot-media (box :class "slot-media"))
-        (slot slot-sysmini (box :class "slot-sysmini"))
-       (slot slot-time (box :class "slot-time"))
        (slot slot-modebadge (box :class "slot-modebadge"))))
