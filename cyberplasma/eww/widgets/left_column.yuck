@@ -1,6 +1,7 @@
 ;; Left column widget with system gauges, network metrics, and top processes
 
 ;; System gauges
+(defpoll cores :interval "3600s" :command "nproc --all")
 (defpoll cpu :interval "1s" :command "../scripts/cpu.sh" :json true)
 (defpoll ram :interval "5s" :command "../scripts/ram.sh" :json true)
 (defpoll temp :interval "5s" :command "../scripts/temp.sh | jq '{temp: (.[keys[0]])}'" :json true)
@@ -13,9 +14,29 @@
 
 (defwidget left_column []
   (box :class "left-column" :orientation "v" :spacing 8 :vexpand true
-       ;; Gauges
-       (progress :class "cpu" :value cpu.usage :max 100)
-       (progress :class "ram" :value ram.percent :max 100)
+      ;; Gauges
+       (box :id "bar-matrix" :orientation "h" :spacing 2
+            (for i (range 0 cores)
+                 (progress :orientation "v" :vexpand true :max 100
+                           :value (nth cpu.cores i)
+                           :class (format "cpu-bar %s"
+                                          (if (> (nth cpu.cores i) 95)
+                                              "cp-err"
+                                              (if (> (nth cpu.cores i) 80)
+                                                  "cp-warn"
+                                                  "cp-accent"))))))
+       (box :id "ram-matrix" :orientation "v" :spacing 1
+            (for r (range 0 10)
+                 (box :orientation "h" :spacing 1
+                      (for c (range 0 24)
+                           (box :width 10 :height 10
+                                :class (if (< (+ (* r 24) c) ram.used_dots)
+                                             (if (>= (+ (* r 24) c) 216)
+                                                 "ram-dot cp-err"
+                                                 (if (>= (+ (* r 24) c) 192)
+                                                     "ram-dot cp-warn"
+                                                     "ram-dot cp-accent"))
+                                             "ram-dot")))))
        (progress :class "temp" :value temp.temp :max 100)
        ;; Network metrics
        (box :class "net" :spacing 4
