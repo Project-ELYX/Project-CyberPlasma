@@ -9,6 +9,13 @@ $fg: env(FG);
 $panel: env(PANEL);
 $accent: env(ACCENT);
 $border: env(BORDER);
+$chrome: env(CHROME);
+$accent2: env(ACCENT2);
+$text: env(TEXT);
+$muted: env(MUTED);
+$ok: env(OK);
+$warn: env(WARN);
+$err: env(ERR);
 
 .top-bar {
   background-color: $panel;
@@ -37,3 +44,12 @@ $border: env(BORDER);
     }
   }
 }
+
+.cp-chrome { color: $chrome; }
+.cp-accent { color: $accent; }
+.cp-accent2 { color: $accent2; }
+.cp-text { color: $text; }
+.cp-muted { color: $muted; }
+.cp-ok { color: $ok; }
+.cp-warn { color: $warn; }
+.cp-err { color: $err; }
