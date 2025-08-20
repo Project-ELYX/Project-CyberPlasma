@@ -1,6 +1,6 @@
 ;; Control strip widget using the skinned SVG
-(defwidget control_strip []
-  (svg :path "../../../chrome/control_strip_skinned.svg"
+(defwidget control_strip [width]
+  (svg :path "../../../chrome/control_strip_skinned.svg" :width width
        (slot slot-pins (box :class "slot-pins"))
        (slot slot-net (box :class "slot-net"))
        (slot slot-viz (box :class "slot-viz"))

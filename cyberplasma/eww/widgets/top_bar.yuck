@@ -16,8 +16,8 @@
 ;; Media info
 (defpoll mpris :interval "2s" :command "../scripts/mpris.sh" :json true)
 
-(defwidget top_bar []
-  (overlay :class "top-bar" :width 1920 :height 56
+(defwidget top_bar [width]
+  (overlay :class "top-bar" :width width :height 56
            (image :path "../../../chrome/control_strip_skinned.svg")
            ;; Network slot
            (box :class "slot-net" :x "250" :y "12" :width "150" :height "32" :halign "start" :valign "center" :spacing 4
