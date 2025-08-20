@@ -4,6 +4,8 @@
 (defpoll cores :interval "3600s" :command "nproc --all")
 (defpoll cpu :interval "1s" :command "../scripts/cpu.sh" :json true)
 (defpoll ram :interval "5s" :command "../scripts/ram.sh" :json true)
+;; Network activity
+(defpoll net :interval "2s" :command "../scripts/net.sh $(../scripts/default_iface.sh)" :json true)
 
 ;; Temperature (first available sensor)
 (defpoll temp :interval "5s" :command "../scripts/temp.sh | jq '{temp: (.[keys[0]])}'" :json true)
@@ -13,6 +15,8 @@
 (defpoll load :interval "10s" :command "awk '{print $1 \" \" $2 \" \" $3}' /proc/loadavg")
 ;; Power source and battery percentage
 (defpoll power :interval "30s" :command "sh -c 'if [ -r /sys/class/power_supply/AC/online ] && [ $(cat /sys/class/power_supply/AC/online) -eq 1 ]; then echo AC; elif [ -r /sys/class/power_supply/BAT0/capacity ]; then printf \"DC %s%%\" $(cat /sys/class/power_supply/BAT0/capacity); else echo AC; fi'")
+;; Top processes
+(defpoll top_procs :interval "5s" :command "../scripts/top_procs.sh" :json true)
 
 (defwidget left_column []
 
@@ -33,13 +37,10 @@
   (overlay :class "vitals-panel" :width 420 :height 220
            (image :path (format "%s/chrome/vitals_panel_skinned.svg" (getenv "CYBERPLASMA_ROOT")))
            ;; Icon seats
-           (image :path (format "%s/icons/icon_temp.svg" (getenv "CYBERPLASMA_ROOT")) :x "78" :y "36" :width "24" :height "24")
-           (image :path (format "%s/icons/icon_command_mode.svg" (getenv "CYBERPLASMA_ROOT")) :x "78" :y "68" :width "24" :height "24")
-           (image :path (format "%s/icons/icon_cpu.svg" (getenv "CYBERPLASMA_ROOT")) :x "78" :y "100" :width "24" :height "24")
-           (image :path (format "%s/icons/icon_battery.svg" (getenv "CYBERPLASMA_ROOT")) :x "78" :y "132" :width "24" :height "24")
            (image :class "cp-chrome" :path "../../../icons/icon_temp.svg" :x "78" :y "36" :width "24" :height "24")
            (image :class "cp-accent2" :path "../../../icons/icon_command_mode.svg" :x "78" :y "68" :width "24" :height "24")
            (image :class "cp-chrome" :path "../../../icons/icon_cpu.svg" :x "78" :y "100" :width "24" :height "24")
+           (image :class "cp-chrome" :path "../../../icons/icon_battery.svg" :x "78" :y "132" :width "24" :height "24")
            ;; Value slots
            (box :x "110" :y "40" :width "290" :height "20" :halign "start" :valign "center"
                 (label :class "temps" :text "CPU ${temp.temp}°C"))
