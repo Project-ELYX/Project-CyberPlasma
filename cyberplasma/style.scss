@@ -47,21 +47,25 @@ $err: env(ERR);
   color: $err;
 }
 
+
+// Top overlay strip skinned via SVG
 .top-bar {
   @extend .cp-chrome;
-  background-color: $panel;
-  border-bottom: 1px solid $border;
+  background: url("../chrome/control_strip_skinned.svg") no-repeat center/cover;
 }
 
+
+// Vitals panel with skinned frame
 .left-column {
   @extend .cp-chrome;
-  background-color: $bg;
-  border-right: 1px solid $border;
+  background: url("../chrome/vitals_panel_skinned.svg") no-repeat center/cover;
 }
 
+
+// Media panel skinned background
 .mpris-controls {
   @extend .cp-chrome;
-  background-color: $panel;
+  background: url("../chrome/media_panel_skinned.svg") no-repeat center/cover;
   padding: 0.5rem;
 
   button {
