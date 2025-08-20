@@ -8,28 +8,69 @@ $bg: env(BG);
 $fg: env(FG);
 $panel: env(PANEL);
 $accent: env(ACCENT);
+$accent2: env(ACCENT_ALT);
 $border: env(BORDER);
+$muted: env(MUTED);
+$ok: env(OK);
+$warn: env(WARN);
+$err: env(ERR);
 
+.cp-chrome {
+  color: $fg;
+}
+
+.cp-accent {
+  color: $accent;
+}
+
+.cp-accent2 {
+  color: $accent2;
+}
+
+.cp-text {
+  color: $fg;
+}
+
+.cp-muted {
+  color: $muted;
+}
+
+.cp-ok {
+  color: $ok;
+}
+
+.cp-warn {
+  color: $warn;
+}
+
+.cp-err {
+  color: $err;
+}
+
+
+// Top overlay strip skinned via SVG
 .top-bar {
-  background-color: $panel;
-  color: $fg;
-  border-bottom: 1px solid $border;
+  @extend .cp-chrome;
+  background: url("../chrome/control_strip_skinned.svg") no-repeat center/cover;
 }
 
+
+// Vitals panel with skinned frame
 .left-column {
-  background-color: $bg;
-  color: $fg;
-  border-right: 1px solid $border;
+  @extend .cp-chrome;
+  background: url("../chrome/vitals_panel_skinned.svg") no-repeat center/cover;
 }
 
+
+// Media panel skinned background
 .mpris-controls {
-  background-color: $panel;
-  color: $fg;
+  @extend .cp-chrome;
+  background: url("../chrome/media_panel_skinned.svg") no-repeat center/cover;
   padding: 0.5rem;
 
   button {
+    @extend .cp-accent;
     background: transparent;
-    color: $accent;
     padding: 0.25rem;
 
     &:hover {
