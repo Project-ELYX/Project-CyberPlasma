@@ -1,4 +1,4 @@
-;; Top bar widget with time, system metrics, network, IP info, and media controls
+;; Top bar widget integrated with control strip SVG
 ;; Time and date
 (defpoll datetime :interval "1s" :command "date +'%Y-%m-%d %H:%M:%S'")
 
@@ -7,7 +7,7 @@
 (defpoll ram :interval "5s" :command "../scripts/ram.sh" :json true)
 (defpoll temp :interval "5s" :command "../scripts/temp.sh cpu_thermal_zone" :json true)
 
-;; Network rates and IP information
+;; Network and IP information
 (defpoll net :interval "2s" :command "../scripts/net.sh $(../scripts/default_iface.sh)" :json true)
 (defpoll vpn :interval "10s" :command "../scripts/vpn.sh" :json true)
 (defpoll local_ip :interval "60s" :command "../scripts/local_ip.sh" :json true)
@@ -17,21 +17,26 @@
 (defpoll mpris :interval "2s" :command "../scripts/mpris.sh" :json true)
 
 (defwidget top_bar []
-  (box :class "top-bar" :space-evenly true :hexpand true
-       ;; Time/Date
-       (label :class "datetime" :text "${datetime}")
-       ;; Gauges
-       (progress :class "cpu" :value cpu.usage :max 100)
-       (progress :class "ram" :value ram.percent :max 100)
-       (progress :class "temp" :value temp.temp :max 100)
-       ;; Network rates
-       (label :class "net-rx" :text "Rx ${net.rx_kBps} kB/s")
-       (label :class "net-tx" :text "Tx ${net.tx_kBps} kB/s")
-       ;; IP information
-       (label :class "vpn" :text "VPN ${vpn.vpn}")
-       (label :class "local-ip" :text "${local_ip[net.interface]}")
-       (label :class "public-ip" :text "${public_ip.ip}")
-       ;; Now playing with controls
-       (box :class "mpris" :spacing 4
-            (label :class "mpris-text" :text "${mpris.artist} - ${mpris.title}")
-            (mpris_controls))))
+  (overlay :class "top-bar" :width 1920 :height 56
+           (image :path "../../../chrome/control_strip_skinned.svg")
+           ;; Network slot
+           (box :class "slot-net" :x "250" :y "12" :width "150" :height "32" :halign "start" :valign "center" :spacing 4
+                (label :class "iface" :text "${net.interface}")
+                (label :class "local-ip" :text "${local_ip[net.interface]}")
+                (label :class "public-ip" :text "${public_ip.ip}")
+                (image :class "vpn-icon" :width 16 :height 16
+                       :path (if vpn.vpn "../../../icons/icon_vpn_on.svg" "../../../icons/icon_vpn_off.svg")))
+           ;; Media controls slot
+           (box :class "slot-media" :x "650" :y "12" :width "500" :height "32" :halign "start" :valign "center" :spacing 4
+                (mpris_controls :status mpris.status)
+                (label :class "mpris-text" :text "${mpris.artist} - ${mpris.title}"))
+           ;; System mini metrics slot
+           (box :class "slot-sysmini" :x "1190" :y "12" :width "360" :height "32" :halign "start" :valign "center" :spacing 8
+                (image :path "../../../icons/icon_cpu.svg" :width 16 :height 16)
+                (label :class "cpu" :text "${cpu.usage}%")
+                (image :path "../../../icons/icon_temp.svg" :width 16 :height 16)
+                (label :class "temp" :text "${temp.temp}°C")
+                (label :class "ram" :text "${ram.percent}%"))
+           ;; Time slot
+           (box :class "slot-time" :x "1590" :y "12" :width "280" :height "32" :halign "center" :valign "center"
+                (label :class "datetime" :text "${datetime}"))))
