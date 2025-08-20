@@ -5,7 +5,7 @@
 ;; System gauges
 (defpoll cpu :interval "1s" :command "../scripts/cpu.sh" :json true)
 (defpoll ram :interval "5s" :command "../scripts/ram.sh" :json true)
-(defpoll temp :interval "5s" :command "../scripts/temp.sh | jq '{temp: (.[keys[0]])}'" :json true)
+(defpoll temp :interval "5s" :command "../scripts/temp.sh cpu_thermal_zone" :json true)
 
 ;; Network rates and IP information
 (defpoll net :interval "2s" :command "../scripts/net.sh $(../scripts/default_iface.sh)" :json true)
