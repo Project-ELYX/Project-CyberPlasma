@@ -17,11 +17,18 @@ if [[ "$action" != "show" && "$action" != "hide" ]]; then
     exit 1
 fi
 
+if [[ ! $screen =~ ^[0-9]+$ ]]; then
+    echo "Screen must be a numeric value" >&2
+    exit 1
+fi
+
+screen_sanitized="${BASH_REMATCH[0]}"
+
 script="
 const ids = panelIds;
 for (var i = 0; i < ids.length; ++i) {
   var p = panelById(ids[i]);
-  if (p.screen === $screen) {
+  if (p.screen === $screen_sanitized) {
     if ('$action' === 'hide') {
       p.hiding = 'autohide';
       p.hide();
