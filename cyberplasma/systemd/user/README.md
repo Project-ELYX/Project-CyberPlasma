@@ -1,6 +1,6 @@
 # CyberPlasma systemd user units
 
-These units manage optional components for the CyberPlasma setup.
+These units manage optional components for the CyberPlasma setup. The list below covers only the active services.
 
 ## Units
 - `cyberplasma.target` – groups all CyberPlasma services.
