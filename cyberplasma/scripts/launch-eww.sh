@@ -4,8 +4,12 @@
 set -euo pipefail
 MODE=${CYBERPLASMA_MODE:-command}
 
-# Load theme variables so Eww can resolve color references
+# Determine repository root for asset resolution and export for Eww widgets
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+CYBERPLASMA_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
+export CYBERPLASMA_ROOT
+
+# Load theme variables so Eww can resolve color references
 set -a
 source "${SCRIPT_DIR}/../theme.env"
 set +a
@@ -34,6 +38,9 @@ xrandr --query | awk '/ connected/{for(i=1;i<=NF;i++) if ($i ~ /[0-9]+x[0-9]+\+/
   # primarily informational and available for potential future use.
   if [[ "$MODE" == "control" ]]; then
     eww open control_strip --screen "$name"
+    eww open control_strip --screen "$name" --arg monitor_width="$width"
+  else
+    eww open top_bar --screen "$name" --arg monitor_width="$width"
   fi
   eww open left_column --screen "$name"
 done

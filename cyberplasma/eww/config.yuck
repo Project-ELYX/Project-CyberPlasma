@@ -9,13 +9,16 @@
 ;; Link shared styles
 (include-css "../style.scss")
 
+;; Monitor-specific dimensions
+(defvar monitor_width 1920)
+
 ;; Expose widgets as windows
 (defwindow top_bar
   :focusable false
   :wm-ignore true
   :stacking "overlay"
-  :geometry (geometry :anchor "top left" :x "0px" :y "0px" :width "1920px" :height "56px")
-  (top_bar))
+  :geometry (geometry :anchor "top left" :x "0px" :y "0px" :width "100%" :height "56px")
+  (top_bar :width monitor_width))
 
 (defwindow left_column
   :focusable false
@@ -28,7 +31,7 @@
   :focusable false
   :wm-ignore true
   :stacking "overlay"
-  :geometry (geometry :anchor "center" :x "0px" :y "0px" :width "300px" :height "60px")
+  :geometry (geometry :anchor "center" :x "0px" :y "0px" :width "560px" :height "160px")
   (mpris_controls))
 
 (defwindow control_strip
@@ -36,4 +39,4 @@
   :wm-ignore true
   :stacking "overlay"
   :geometry (geometry :anchor "top left" :x "0px" :y "0px" :width "100%" :height "56px")
-  (control_strip))
+  (control_strip :width monitor_width))
