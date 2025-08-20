@@ -1,0 +1,10 @@
+;; Control strip widget using the skinned SVG
+(defwidget control_strip []
+  (svg :path "../../../chrome/control_strip_skinned.svg"
+       (slot slot-pins (box :class "slot-pins"))
+       (slot slot-net (box :class "slot-net"))
+       (slot slot-viz (box :class "slot-viz"))
+       (slot slot-media (box :class "slot-media"))
+       (slot slot-sysmini (box :class "slot-sysmini"))
+       (slot slot-time (box :class "slot-time"))
+       (slot slot-modebadge (box :class "slot-modebadge"))))
