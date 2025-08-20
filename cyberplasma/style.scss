@@ -8,7 +8,6 @@ $bg: env(BG);
 $fg: env(FG);
 $panel: env(PANEL);
 $accent: env(ACCENT);
-$accent2: env(ACCENT_ALT);
 $border: env(BORDER);
 $chrome: env(CHROME);
 $accent2: env(ACCENT2);
@@ -17,38 +16,6 @@ $muted: env(MUTED);
 $ok: env(OK);
 $warn: env(WARN);
 $err: env(ERR);
-
-.cp-chrome {
-  color: $fg;
-}
-
-.cp-accent {
-  color: $accent;
-}
-
-.cp-accent2 {
-  color: $accent2;
-}
-
-.cp-text {
-  color: $fg;
-}
-
-.cp-muted {
-  color: $muted;
-}
-
-.cp-ok {
-  color: $ok;
-}
-
-.cp-warn {
-  color: $warn;
-}
-
-.cp-err {
-  color: $err;
-}
 
 
 // Top overlay strip skinned via SVG
