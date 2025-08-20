@@ -1,17 +1,21 @@
-;; Left column widget with system gauges, network metrics, and top processes
+;; Vitals panel widget using skinned SVG
 
 ;; System gauges
+(defpoll cores :interval "3600s" :command "nproc --all")
 (defpoll cpu :interval "1s" :command "../scripts/cpu.sh" :json true)
 (defpoll ram :interval "5s" :command "../scripts/ram.sh" :json true)
+
+;; Temperature (first available sensor)
 (defpoll temp :interval "5s" :command "../scripts/temp.sh | jq '{temp: (.[keys[0]])}'" :json true)
-
-;; Network rates using dynamically detected interface
-(defpoll net :interval "2s" :command "../scripts/net.sh $(../scripts/default_iface.sh)" :json true)
-
-;; Top processes
-(defpoll top_procs :interval "10s" :command "../scripts/top_procs.sh" :json true)
+;; Uptime
+(defpoll uptime :interval "60s" :command "sh -c 'uptime -p | sed \"s/^up //\"'")
+;; Load averages
+(defpoll load :interval "10s" :command "awk '{print $1 \" \" $2 \" \" $3}' /proc/loadavg")
+;; Power source and battery percentage
+(defpoll power :interval "30s" :command "sh -c 'if [ -r /sys/class/power_supply/AC/online ] && [ $(cat /sys/class/power_supply/AC/online) -eq 1 ]; then echo AC; elif [ -r /sys/class/power_supply/BAT0/capacity ]; then printf \"DC %s%%\" $(cat /sys/class/power_supply/BAT0/capacity); else echo AC; fi'")
 
 (defwidget left_column []
+
   (box :class "left-column" :orientation "v" :spacing 8 :vexpand true
        ;; Gauges
        (progress :class "cpu cp-accent" :value cpu.usage :max 100)
@@ -25,3 +29,45 @@
        (box :class "procs" :orientation "v"
             (for proc top_procs
                  (label :class "proc cp-text" :text "${proc.cmd} ${proc.cpu}%")))))
+
+  (overlay :class "vitals-panel" :width 420 :height 220
+           (image :path "../../../chrome/vitals_panel_skinned.svg")
+           ;; Icon seats
+           (image :path "../../../icons/icon_temp.svg" :x "78" :y "36" :width "24" :height "24")
+           (image :path "../../../icons/icon_command_mode.svg" :x "78" :y "68" :width "24" :height "24")
+           (image :path "../../../icons/icon_cpu.svg" :x "78" :y "100" :width "24" :height "24")
+           (image :path "../../../icons/icon_battery.svg" :x "78" :y "132" :width "24" :height "24")
+           ;; Value slots
+           (box :x "110" :y "40" :width "290" :height "20" :halign "start" :valign "center"
+                (label :class "temps" :text "CPU ${temp.temp}°C"))
+           (box :x "110" :y "72" :width "290" :height "20" :halign "start" :valign "center"
+                (label :class "uptime" :text "${uptime}"))
+           (box :x "110" :y "104" :width "290" :height "20" :halign "start" :valign "center"
+                (label :class "load" :text "${load}"))
+           (box :x "110" :y "136" :width "290" :height "20" :halign "start" :valign "center"
+                (label :class "power" :text "${power}"))
+           ;; CPU usage bars
+           (box :id "bar-matrix" :x "20" :y "56" :width "380" :height "80" :orientation "h" :spacing 2
+                (for i (range 0 cores)
+                     (progress :orientation "v" :vexpand true :max 100
+                               :value (nth cpu.cores i)
+                               :class (format "cpu-bar %s"
+                                              (if (> (nth cpu.cores i) 95)
+                                                  "cp-err"
+                                                  (if (> (nth cpu.cores i) 80)
+                                                      "cp-warn"
+                                                      "cp-accent"))))))
+           ;; RAM dot matrix
+           (box :id "ram-matrix" :x "20" :y "140" :width "380" :height "60" :orientation "v" :spacing 1
+                (for r (range 0 10)
+                     (box :orientation "h" :spacing 1
+                          (for c (range 0 24)
+                               (box :width 10 :height 10
+                                    :class (if (< (+ (* r 24) c) ram.used_dots)
+                                                 (if (>= (+ (* r 24) c) 216)
+                                                     "ram-dot cp-err"
+                                                     (if (>= (+ (* r 24) c) 192)
+                                                         "ram-dot cp-warn"
+                                                         "ram-dot cp-accent"))
+                                                 "ram-dot"))))))))
+

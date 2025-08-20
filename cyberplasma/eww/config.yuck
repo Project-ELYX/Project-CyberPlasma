@@ -4,6 +4,7 @@
 (include "./widgets/top_bar.yuck")
 (include "./widgets/left_column.yuck")
 (include "./widgets/mpris_controls.yuck")
+(include "./widgets/control_strip.yuck")
 
 ;; Link shared styles
 (include-css "../style.scss")
@@ -20,7 +21,7 @@
   :focusable false
   :wm-ignore true
   :stacking "overlay"
-  :geometry (geometry :anchor "left center" :x "0px" :y "0px" :width "420px" :height "220px")
+  :geometry (geometry :anchor "top left" :x "0px" :y "0px" :width "420px" :height "220px")
   (left_column))
 
 (defwindow mpris_controls
@@ -29,3 +30,10 @@
   :stacking "overlay"
   :geometry (geometry :anchor "center" :x "0px" :y "0px" :width "560px" :height "160px")
   (mpris_controls))
+
+(defwindow control_strip
+  :focusable false
+  :wm-ignore true
+  :stacking "overlay"
+  :geometry (geometry :anchor "top left" :x "0px" :y "0px" :width "100%" :height "56px")
+  (control_strip))
