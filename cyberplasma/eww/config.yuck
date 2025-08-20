@@ -28,7 +28,7 @@
   :focusable false
   :wm-ignore true
   :stacking "overlay"
-  :geometry (geometry :anchor "center" :x "0px" :y "0px" :width "300px" :height "60px")
+  :geometry (geometry :anchor "center" :x "0px" :y "0px" :width "560px" :height "160px")
   (mpris_controls))
 
 (defwindow control_strip
