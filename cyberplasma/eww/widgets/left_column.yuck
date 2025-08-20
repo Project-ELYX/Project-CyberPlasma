@@ -1,5 +1,10 @@
 ;; Vitals panel widget using skinned SVG
 
+;; System gauges
+(defpoll cores :interval "3600s" :command "nproc --all")
+(defpoll cpu :interval "1s" :command "../scripts/cpu.sh" :json true)
+(defpoll ram :interval "5s" :command "../scripts/ram.sh" :json true)
+
 ;; Temperature (first available sensor)
 (defpoll temp :interval "5s" :command "../scripts/temp.sh | jq '{temp: (.[keys[0]])}'" :json true)
 ;; Uptime
@@ -25,5 +30,29 @@
            (box :x "110" :y "104" :width "290" :height "20" :halign "start" :valign "center"
                 (label :class "load" :text "${load}"))
            (box :x "110" :y "136" :width "290" :height "20" :halign "start" :valign "center"
-                (label :class "power" :text "${power}"))))
+                (label :class "power" :text "${power}"))
+           ;; CPU usage bars
+           (box :id "bar-matrix" :x "20" :y "56" :width "380" :height "80" :orientation "h" :spacing 2
+                (for i (range 0 cores)
+                     (progress :orientation "v" :vexpand true :max 100
+                               :value (nth cpu.cores i)
+                               :class (format "cpu-bar %s"
+                                              (if (> (nth cpu.cores i) 95)
+                                                  "cp-err"
+                                                  (if (> (nth cpu.cores i) 80)
+                                                      "cp-warn"
+                                                      "cp-accent"))))))
+           ;; RAM dot matrix
+           (box :id "ram-matrix" :x "20" :y "140" :width "380" :height "60" :orientation "v" :spacing 1
+                (for r (range 0 10)
+                     (box :orientation "h" :spacing 1
+                          (for c (range 0 24)
+                               (box :width 10 :height 10
+                                    :class (if (< (+ (* r 24) c) ram.used_dots)
+                                                 (if (>= (+ (* r 24) c) 216)
+                                                     "ram-dot cp-err"
+                                                     (if (>= (+ (* r 24) c) 192)
+                                                         "ram-dot cp-warn"
+                                                         "ram-dot cp-accent"))
+                                                 "ram-dot"))))))))
 
