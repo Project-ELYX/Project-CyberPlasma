@@ -1,0 +1,9 @@
+<svg viewBox="0 0 60 24" xmlns="http://www.w3.org/2000/svg">
+  <g class="cp-accent" stroke="currentColor" stroke-width="2" fill="none"
+     stroke-linecap="butt" stroke-linejoin="miter">
+    <path d="M2,6 L8,0 H58 L58,18 L52,24 H2 Z"/>
+  </g>
+  <text x="14" y="16" class="cp-text"
+        font-family="ShureTechMono Nerd Font" font-size="12"
+        fill="currentColor">CMD</text>
+</svg>

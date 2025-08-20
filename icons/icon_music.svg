@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+  <g class="cp-chrome" stroke="currentColor" fill="currentColor"
+     stroke-linecap="butt" stroke-linejoin="miter">
+    <!-- stems -->
+    <rect x="12" y="8" width="2" height="11"/>
+    <rect x="20" y="6" width="2" height="11"/>
+    <!-- slanted beam as a polygon so it’s thick -->
+    <polygon points="12,8 22,6 22,9 12,11"/>
+    <!-- heads -->
+    <ellipse cx="13" cy="21" rx="3.6" ry="2.6"/>
+    <ellipse cx="21" cy="19" rx="3.6" ry="2.6"/>
+  </g>
+</svg>

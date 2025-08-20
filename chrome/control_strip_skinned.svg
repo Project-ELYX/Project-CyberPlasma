@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1920 56" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .cp { stroke: currentColor; fill: none; vector-effect: non-scaling-stroke;
+            stroke-linecap: butt; stroke-linejoin: miter; }
+      .chrome { stroke-width: 2; }
+      .accent { stroke-width: 1.6; }
+      .thin   { stroke-width: 1; opacity:.45; }
+      .txt-muted { fill: currentColor; opacity:.65;
+                   font-family: "ShureTechMono Nerd Font", monospace;
+                   font-size: 10px; letter-spacing: .5px; }
+    </style>
+  </defs>
+
+  <!-- Outer frame with chamfers -->
+  <path class="cp chrome" d="M0,8 L8,0 H1912 L1920,8 V48 L1912,56 H8 L0,48 Z"/>
+
+  <!-- Divider ticks (faint accents to break sections) -->
+  <g class="cp thin">
+    <line x1="240" y1="0" x2="240" y2="56"/>
+    <line x1="420" y1="0" x2="420" y2="56"/>
+    <line x1="640" y1="0" x2="640" y2="56"/>
+    <line x1="1180" y1="0" x2="1180" y2="56"/>
+    <line x1="1580" y1="0" x2="1580" y2="56"/>
+  </g>
+
+  <!-- Slots for content injection -->
+  <!-- Pinned apps / tasks -->
+  <rect id="slot-pins" x="16" y="12" width="210" height="32" fill="none"/>
+  <!-- Network/IP widget -->
+  <rect id="slot-net" x="250" y="12" width="150" height="32" fill="none"/>
+  <!-- Mini visualizer -->
+  <rect id="slot-viz" x="430" y="12" width="180" height="32" fill="none"/>
+  <!-- Media controls + song -->
+  <rect id="slot-media" x="650" y="12" width="500" height="32" fill="none"/>
+  <!-- System mini-widgets -->
+  <rect id="slot-sysmini" x="1190" y="12" width="360" height="32" fill="none"/>
+  <!-- Time/date -->
+  <rect id="slot-time" x="1590" y="12" width="280" height="32" fill="none"/>
+
+  <!-- Optional CMD/CTL toggle badge seat -->
+  <rect id="slot-modebadge" x="1880" y="8" width="32" height="40" fill="none"/>
+
+  <!-- Subtle footer ticks -->
+  <line class="cp thin" x1="0" y1="54" x2="1920" y2="54"/>
+</svg>

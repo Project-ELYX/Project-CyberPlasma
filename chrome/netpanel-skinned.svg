@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 380 270" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .cp { stroke: currentColor; fill: none; vector-effect: non-scaling-stroke;
+            stroke-linecap: butt; stroke-linejoin: miter; }
+      .chrome { stroke-width: 2; }
+      .accent { stroke-width: 1.6; }
+      .thin   { stroke-width: 1; opacity: .45; }
+      .micro  { stroke-width: .8; opacity: .30; }
+      .txt-muted { fill: currentColor; opacity: .65;
+                   font-family: "ShureTechMono Nerd Font", monospace; font-size: 11px; letter-spacing: .5px; }
+      .txt-head  { fill: currentColor; opacity: .95;
+                   font-family: "ShureTechMono Nerd Font", monospace; font-size: 12px; letter-spacing: 1px; }
+    </style>
+  </defs>
+
+  <!-- Outer chamfered frame -->
+  <path class="cp chrome" d="
+    M0,16 L16,0 H364 L380,16 V254 L364,270 H16 L0,254 Z" />
+
+  <!-- Header strip + title + VPN badge seat -->
+  <rect class="cp accent" x="18" y="14" width="292" height="28" rx="6"/>
+  <rect class="cp accent" id="vpn-badge-seat" x="318" y="16" width="44" height="24" rx="4"/>
+  <text class="txt-head" x="26" y="32">NETWORK</text>
+  <!-- tiny notch ticks -->
+  <line class="cp thin" x1="18" y1="46" x2="362" y2="46"/>
+
+  <!-- Labels (etched, decorative; live values get overlaid in slots) -->
+  <text class="txt-muted" x="20" y="66">LOCAL</text>
+  <text class="txt-muted" x="20" y="96">PUBLIC</text>
+
+  <!-- Content-safe slots for values -->
+  <rect id="slot-local"  x="80" y="52" width="280" height="20" fill="none"/>
+  <rect id="slot-public" x="80" y="82" width="280" height="20" fill="none"/>
+
+  <!-- Mid divider -->
+  <line class="cp thin" x1="18" y1="112" x2="362" y2="112"/>
+
+  <!-- Footer labels (left block) -->
+  <text class="txt-muted" x="20" y="132">IFACE</text>
+  <text class="txt-muted" x="20" y="152">STATE</text>
+  <text class="txt-muted" x="20" y="172">PING</text>
+
+  <!-- Slots for footer values (left block) -->
+  <rect id="slot-iface" x="80" y="118" width="96" height="18" fill="none"/>
+  <rect id="slot-state" x="80" y="138" width="96" height="18" fill="none"/>
+  <rect id="slot-ping"  x="80" y="158" width="96" height="18" fill="none"/>
+
+  <!-- Live traffic header (right block) -->
+  <text class="txt-muted" x="190" y="132">TRAFFIC</text>
+  <text class="txt-muted" x="190" y="152">UP</text>
+  <text class="txt-muted" x="190" y="172">DOWN</text>
+  <rect id="slot-up"   x="228" y="138" width="54" height="18" fill="none"/>
+  <rect id="slot-down" x="228" y="158" width="54" height="18" fill="none"/>
+
+  <!-- Sparkline panel bezel -->
+  <rect class="cp accent" x="20" y="186" width="340" height="62" rx="6"/>
+
+  <!-- Sparkline grid (light) -->
+  <g class="cp micro">
+    <!-- verticals -->
+    <line x1="20" y1="217" x2="360" y2="217"/>
+    <line x1="20" y1="201" x2="360" y2="201"/>
+    <line x1="20" y1="233" x2="360" y2="233"/>
+    <!-- left edge + mid tick marks -->
+    <line x1="60"  y1="188" x2="60"  y2="248"/>
+    <line x1="100" y1="188" x2="100" y2="248"/>
+    <line x1="140" y1="188" x2="140" y2="248"/>
+    <line x1="180" y1="188" x2="180" y2="248"/>
+    <line x1="220" y1="188" x2="220" y2="248"/>
+    <line x1="260" y1="188" x2="260" y2="248"/>
+    <line x1="300" y1="188" x2="300" y2="248"/>
+    <line x1="340" y1="188" x2="340" y2="248"/>
+  </g>
+
+  <!-- Sparkline plot SAFE region (EWW will draw polyline inside here) -->
+  <rect id="sparkline-safe" x="24" y="190" width="332" height="58" fill="none"/>
+
+  <!-- Footer micro ticks -->
+  <line class="cp thin" x1="18" y1="252" x2="362" y2="252"/>
+</svg>

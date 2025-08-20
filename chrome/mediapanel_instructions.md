@@ -1,39 +1,116 @@
-B) Constrain the title in EWW (so it never bleeds)
+🎵 CyberPlasma Media Panel — Implementation Instructions
+Files
 
-Position your title overlay inside that 488×26 rect and clip it:
+chrome/media_panel_v2.svg → full panel (Command mode).
 
-.media-title {
-  position: absolute;
-  left: 16px;          /* match title-area x */
-  top: 88px;           /* match title-area y */
-  width: 488px;        /* match title-area width */
-  height: 26px;        /* match title-area height */
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  text-align: center;  /* or left/right if you prefer */
-  line-height: 26px;   /* vertically center text in the band */
-}
+chrome/media_strip_compact.svg → compact bar version (Control mode).
 
-If you want a marquee on hover:
+Control icons: icon-prev.svg, icon-next.svg, icon-play.svg, icon-pause.svg (we already designed these sharp variants).
 
-.media-title:hover {
-  animation: scrollx 10s linear infinite;
-}
-@keyframes scrollx {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-40%); }
-}
+Command Mode (Panel-size)
+Layout
 
-And make sure the z-order is sane:
+Use media_panel_v2.svg as the frame background.
 
-Frame at the bottom,
+Clickable hitboxes:
 
-Then button hit rects,
+#btn-prev → previous track
 
-Icons over the button rects,
+#btn-playpause → toggle play/pause (icon swapped depending on state)
 
-Progress fill over the progress slot,
+#btn-next → next track
 
-Title text last (but confined to its band).
-Nothing should overlap the center button anymore.
+#slot-progress → seek bar (draw progress fill rectangle inside; allow click/drag seek)
+
+Data slots:
+
+#slot-title → scrolling marquee for artist — title
+
+#slot-sub → subtitle (album name, or elapsed/total time)
+
+#seat-art → album art thumbnail (optional; fallback to music note icon if none)
+
+Logic
+
+playerctl -p %any metadata --format '{{artist}} — {{title}}' → title.
+
+playerctl -p %any metadata --format '{{album}}' or timecodes → subtitle.
+
+playerctl position / playerctl metadata mpris:length → progress fraction → bar fill.
+
+Album art: playerctl metadata mpris:artUrl → fetch/cache → draw scaled image in #seat-art.
+
+Control Mode (Compact Strip)
+Layout
+
+Use media_strip_compact.svg as frame background inside the Control Strip.
+
+Clickable hitboxes:
+
+#btn-prev, #btn-playpause, #btn-next as above.
+
+#slot-progress → thin progress bar (fill line inside).
+
+Data slots:
+
+#slot-title → title string (scroll if too long).
+
+#slot-sub → subtitle (timecodes or artist).
+
+Behavior
+
+Same playerctl logic as Command mode.
+
+Progress bar thinner (height = 6).
+
+Title string truncated with ellipsis when static, or use EWW’s marquee widget.
+
+Icon Swap Rules
+
+Play/Pause:
+
+If playerctl status == Playing → show Pause icon.
+
+Else (Paused, Stopped) → show Play icon.
+
+Icons are centered inside the rect hitboxes.
+
+Color inherits from currentColor → theme can recolor on hover/active.
+
+Update Cadence
+
+Metadata/title update every 1–2s (or on DBus signal).
+
+Progress bar refresh every 0.5–1s.
+
+Album art refresh only on track change.
+
+State detection (Playing/Paused) → poll every 1s or bind to DBus event.
+
+Fallbacks
+
+No player running: hide all controls except Play; #slot-title shows “—”.
+
+Album art missing: fill #seat-art with music glyph icon (clean or glitched).
+
+Multiple players: focus the last active or let user cycle.
+
+Theme Integration
+
+Use CSS classes:
+
+.cp-accent → active states (hover, playing).
+
+.cp-muted → inactive/no track.
+
+.cp-text → title text.
+
+Ensure all fills are currentColor for easy theme swap.
+
+Summary
+
+Command mode: Full-featured media HUD with art + big controls.
+
+Control mode: Slimline variant inside the strip, no art, smaller progress.
+
+Everything runs through playerctl, DBus-aware, with clean fallbacks.

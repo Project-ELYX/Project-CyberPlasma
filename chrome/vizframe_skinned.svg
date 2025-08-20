@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 480 140" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .cp { stroke: currentColor; fill: none; vector-effect: non-scaling-stroke;
+            stroke-linecap: butt; stroke-linejoin: miter; }
+      .chrome { stroke-width: 2; }
+      .accent { stroke-width: 1.2; }
+      .thin   { stroke-width: 1; opacity: .45; }
+      .micro  { stroke-width: .8; opacity: .30; }
+      .txt    { fill: currentColor; opacity: .7;
+                font-family: "ShureTechMono Nerd Font", monospace; font-size: 10px; letter-spacing: .4px; }
+    </style>
+    <!-- Optional: simple clipPath id matches the rect below -->
+    <clipPath id="viz-clip">
+      <rect x="20" y="22" width="440" height="96" rx="8"/>
+    </clipPath>
+  </defs>
+
+  <!-- Outer chamfered frame -->
+  <path class="cp chrome" d="M0,12 L12,0 H468 L480,12 V128 L468,140 H12 L0,128 Z"/>
+
+  <!-- Inner bezel (subtle) -->
+  <rect class="cp thin" x="12" y="12" width="456" height="116" rx="10"/>
+
+  <!-- Visualizer window (also serves as the clip geometry) -->
+  <rect id="viz-window" class="cp thin" x="20" y="22" width="440" height="96" rx="8"/>
+
+  <!-- Micro grid baseline (very faint) -->
+  <g class="cp micro">
+    <line x1="20" y1="70" x2="460" y2="70"/>
+  </g>
+
+  <!-- Accent rails / ticks -->
+  <g class="cp accent">
+    <line x1="20"  y1="120" x2="64"  y2="120"/>
+    <line x1="416" y1="120" x2="460" y2="120"/>
+  </g>
+
+  <!-- Optional tiny labels (leave blank if not used) -->
+  <text class="txt" x="24"  y="118">VU</text>
+  <text class="txt" x="440" y="118">L·R</text>
+</svg>

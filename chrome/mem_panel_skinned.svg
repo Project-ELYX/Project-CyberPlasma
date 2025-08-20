@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 420 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .cp { stroke: currentColor; fill: none; vector-effect: non-scaling-stroke;
+            stroke-linecap: butt; stroke-linejoin: miter; }
+      .chrome { stroke-width: 2; }
+      .accent { stroke-width: 1.6; }
+      .thin   { stroke-width: 1; opacity:.45; }
+      .txt-head { fill: currentColor; opacity:.95;
+                  font-family: "ShureTechMono Nerd Font", monospace;
+                  font-size: 12px; letter-spacing: 1px; }
+      .txt-muted { fill: currentColor; opacity:.65;
+                  font-family: "ShureTechMono Nerd Font", monospace;
+                  font-size: 10px; }
+    </style>
+  </defs>
+
+  <!-- Frame -->
+  <path class="cp chrome" d="M0,16 L16,0 H404 L420,16 V204 L404,220 H16 L0,204 Z"/>
+
+  <!-- Header -->
+  <rect class="cp accent" x="18" y="14" width="384" height="28" rx="6"/>
+  <text class="txt-head" x="26" y="32">MEMORY</text>
+
+  <!-- Dot-matrix area -->
+  <rect id="ram-matrix" x="20" y="56" width="380" height="100" fill="none"/>
+  <!-- mid divider -->
+  <line class="cp thin" x1="20" y1="162" x2="400" y2="162"/>
+  <!-- swap label -->
+  <text class="txt-muted" x="20" y="178">SWAP</text>
+  <rect id="swap-row" x="80" y="168" width="320" height="16" fill="none"/>
+
+  <!-- barcode accent -->
+  <g class="cp accent" stroke="currentColor" stroke-width="1">
+    <line x1="370" y1="14" x2="370" y2="42"/>
+    <line x1="374" y1="14" x2="374" y2="42"/>
+    <line x1="380" y1="14" x2="380" y2="42"/>
+  </g>
+</svg>

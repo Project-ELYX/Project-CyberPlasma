@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 420 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .cp { stroke: currentColor; fill: none; vector-effect: non-scaling-stroke;
+            stroke-linecap: butt; stroke-linejoin: miter; }
+      .chrome { stroke-width: 2; }
+      .accent { stroke-width: 1.6; }
+      .thin   { stroke-width: 1; opacity:.45; }
+      .micro  { stroke-width: .8; opacity:.3; }
+      .txt-head  { fill: currentColor; opacity:.95;
+                   font-family: "ShureTechMono Nerd Font", monospace;
+                   font-size: 12px; letter-spacing: 1px; }
+      .txt-muted { fill: currentColor; opacity:.65;
+                   font-family: "ShureTechMono Nerd Font", monospace;
+                   font-size: 10px; letter-spacing: .3px; }
+    </style>
+  </defs>
+
+  <!-- Frame -->
+  <path class="cp chrome" d="M0,16 L16,0 H404 L420,16 V204 L404,220 H16 L0,204 Z"/>
+
+  <!-- Header -->
+  <rect class="cp accent" x="18" y="14" width="384" height="28" rx="6"/>
+  <text class="txt-head" x="26" y="32">SYSTEM</text>
+
+  <!-- Row guides -->
+  <g class="cp thin">
+    <line x1="18" y1="60"  x2="402" y2="60"/>
+    <line x1="18" y1="92"  x2="402" y2="92"/>
+    <line x1="18" y1="124" x2="402" y2="124"/>
+    <line x1="18" y1="156" x2="402" y2="156"/>
+  </g>
+
+  <!-- Labels (decorative); values go in slots -->
+  <text class="txt-muted" x="20" y="54">TEMPS</text>
+  <text class="txt-muted" x="20" y="86">UPTIME</text>
+  <text class="txt-muted" x="20" y="118">LOAD</text>
+  <text class="txt-muted" x="20" y="150">POWER</text>
+
+  <!-- Icon seats (24x24) -->
+  <rect id="icon-temp"  x="78" y="36" width="24" height="24" fill="none"/>
+  <rect id="icon-time"  x="78" y="68" width="24" height="24" fill="none"/>
+  <rect id="icon-load"  x="78" y="100" width="24" height="24" fill="none"/>
+  <rect id="icon-power" x="78" y="132" width="24" height="24" fill="none"/>
+
+  <!-- Content-safe value slots -->
+  <rect id="slot-temps"  x="110" y="40"  width="290" height="20" fill="none"/>
+  <rect id="slot-uptime" x="110" y="72"  width="290" height="20" fill="none"/>
+  <rect id="slot-load"   x="110" y="104" width="290" height="20" fill="none"/>
+  <rect id="slot-power"  x="110" y="136" width="290" height="20" fill="none"/>
+
+  <!-- Footer micro ticks -->
+  <line class="cp thin" x1="18" y1="188" x2="402" y2="188"/>
+  <text class="txt-muted" x="20" y="204">SENSORS</text>
+  <rect id="slot-sensor-note" x="90" y="192" width="310" height="16" fill="none"/>
+</svg>

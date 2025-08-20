@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 540 360" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .cp { stroke: currentColor; fill: none; vector-effect: non-scaling-stroke;
+            stroke-linecap: butt; stroke-linejoin: miter; }
+      .chrome { stroke-width: 2; }
+      .accent { stroke-width: 1.6; }
+      .thin   { stroke-width: 1; opacity:.45; }
+      .micro  { stroke-width: .8; opacity:.3; }
+      .txt-head  { fill: currentColor; opacity:.95;
+                   font-family: "ShureTechMono Nerd Font", monospace;
+                   font-size: 12px; letter-spacing: 1px; }
+      .txt-muted { fill: currentColor; opacity:.65;
+                   font-family: "ShureTechMono Nerd Font", monospace;
+                   font-size: 10px; letter-spacing: .3px; }
+    </style>
+  </defs>
+
+  <!-- Frame -->
+  <path class="cp chrome" d="M0,16 L16,0 H524 L540,16 V344 L524,360 H16 L0,344 Z"/>
+
+  <!-- Header: "FILES" + breadcrumb seat + drive badge -->
+  <rect class="cp accent" x="18" y="14" width="504" height="28" rx="6"/>
+  <text class="txt-head" x="26" y="32">FILES</text>
+  <!-- Breadcrumb safe area (path) -->
+  <rect id="slot-breadcrumb" x="90" y="18" width="350" height="20" fill="none"/>
+  <!-- Drive badge seat (mount selector) -->
+  <rect id="seat-drive" class="cp accent" x="446" y="16" width="64" height="24" rx="4"/>
+
+  <!-- Column headers -->
+  <g class="cp thin">
+    <line x1="18" y1="58" x2="522" y2="58"/>
+  </g>
+  <text class="txt-muted" x="24"  y="74">NAME</text>
+  <text class="txt-muted" x="340" y="74">SIZE</text>
+  <text class="txt-muted" x="402" y="74">TYPE</text>
+  <text class="txt-muted" x="458" y="74">MODIFIED</text>
+
+  <!-- List safe area (EWW will render rows) -->
+  <rect id="slot-list" x="20" y="82" width="500" height="230" fill="none"/>
+
+  <!-- Footer status bar -->
+  <line class="cp thin" x1="18" y1="320" x2="522" y2="320"/>
+  <rect id="slot-status-left"  x="20"  y="326" width="250" height="18" fill="none"/>
+  <rect id="slot-status-right" x="270" y="326" width="250" height="18" fill="none"/>
+
+  <!-- Micro grid in list area (optional; decorative) -->
+  <g class="cp micro">
+    <line x1="20" y1="110" x2="520" y2="110"/>
+    <line x1="20" y1="138" x2="520" y2="138"/>
+    <line x1="20" y1="166" x2="520" y2="166"/>
+    <line x1="20" y1="194" x2="520" y2="194"/>
+    <line x1="20" y1="222" x2="520" y2="222"/>
+    <line x1="20" y1="250" x2="520" y2="250"/>
+    <line x1="20" y1="278" x2="520" y2="278"/>
+  </g>
+</svg>

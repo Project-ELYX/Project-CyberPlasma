@@ -1,0 +1,12 @@
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <g class="cp-muted" stroke="currentColor" stroke-width="2" fill="none"
+     stroke-linecap="butt" stroke-linejoin="miter">
+    <!-- shield -->
+    <path d="M12 3 L20 7 V13 C20 18 16 21 12 23 C8 21 4 18 4 13 V7 Z"/>
+    <!-- lock body -->
+    <rect x="9" y="11" width="6" height="6" rx="1"/>
+    <!-- broken shackle -->
+    <path d="M11 11 v-2 a1 1 0 0 1 2 -1"/>
+    <line x1="8" y1="8" x2="16" y2="16"/>
+  </g>
+</svg>

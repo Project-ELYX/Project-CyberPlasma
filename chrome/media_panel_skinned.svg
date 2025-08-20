@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 560 160" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .cp{stroke:currentColor;fill:none;vector-effect:non-scaling-stroke;stroke-linecap:butt;stroke-linejoin:miter}
+      .chrome{stroke-width:2}
+      .accent{stroke-width:1.6}
+      .thin{stroke-width:1;opacity:.45}
+      .txt{fill:currentColor;opacity:.95;font-family:"ShureTechMono Nerd Font",monospace;font-size:12px;letter-spacing:.6px}
+      .muted{fill:currentColor;opacity:.6;font-family:"ShureTechMono Nerd Font",monospace;font-size:10px}
+    </style>
+  </defs>
+
+  <!-- outer frame -->
+  <path class="cp chrome" d="M0,12 L12,0 H548 L560,12 V148 L548,160 H12 L0,148 Z"/>
+
+  <!-- control buttons (hit zones only; icons overlaid by EWW) -->
+  <rect id="btn-prev"      class="cp accent" x="16"  y="18" width="56" height="56" rx="10"/>
+  <rect id="btn-playpause" class="cp accent" x="252" y="10" width="56" height="56" rx="14"/>
+  <rect id="btn-next"      class="cp accent" x="488" y="18" width="56" height="56" rx="10"/>
+
+  <!-- optional cover art seat (auto-hide if none) -->
+  <rect id="seat-art" class="cp thin" x="84" y="18" width="48" height="48" rx="6"/>
+
+  <!-- progress bar slot (scrubbable) -->
+  <rect id="slot-progress" class="cp thin" x="84" y="76" width="392" height="10" rx="5"/>
+
+  <!-- title lane (scroll/ellipsis) -->
+  <rect id="slot-title" x="16" y="98" width="528" height="24" fill="none"/>
+  <!-- subtitle lane (artist/album or timecodes) -->
+  <rect id="slot-sub"   x="16" y="124" width="528" height="18" fill="none"/>
+
+  <!-- subtle rails -->
+  <g class="cp accent">
+    <line x1="16" y1="146" x2="80"  y2="146"/>
+    <line x1="480" y1="146" x2="544" y2="146"/>
+  </g>
+</svg>

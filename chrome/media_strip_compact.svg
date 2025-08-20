@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 520 48" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .cp{stroke:currentColor;fill:none;vector-effect:non-scaling-stroke;stroke-linecap:butt;stroke-linejoin:miter}
+      .chrome{stroke-width:2}.thin{stroke-width:1;opacity:.45}
+    </style>
+  </defs>
+
+  <!-- frame -->
+  <path class="cp chrome" d="M0,6 L6,0 H514 L520,6 V42 L514,48 H6 L0,42 Z"/>
+
+  <!-- buttons -->
+  <rect id="btn-prev"      class="cp thin" x="10"  y="8" width="30" height="30" rx="6"/>
+  <rect id="btn-playpause" class="cp thin" x="46"  y="4" width="36" height="36" rx="10"/>
+  <rect id="btn-next"      class="cp thin" x="86"  y="8" width="30" height="30" rx="6"/>
+
+  <!-- progress (thin line) -->
+  <rect id="slot-progress" class="cp thin" x="126" y="22" width="220" height="6" rx="3"/>
+
+  <!-- title (scroll) -->
+  <rect id="slot-title" x="354" y="8"  width="156" height="16" fill="none"/>
+  <!-- timecodes or artist -->
+  <rect id="slot-sub"   x="354" y="26" width="156" height="12" fill="none"/>
+</svg>

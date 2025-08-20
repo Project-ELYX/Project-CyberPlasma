@@ -1,0 +1,7 @@
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <g class="cp-ok" stroke="currentColor" stroke-width="2"
+     fill="none" stroke-linecap="butt" stroke-linejoin="miter">
+    <line x1="12" y1="6" x2="12" y2="14"/>
+    <circle cx="12" cy="17" r="3"/>
+  </g>
+</svg>
