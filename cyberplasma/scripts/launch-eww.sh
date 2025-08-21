@@ -10,9 +10,16 @@ CYBERPLASMA_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 export CYBERPLASMA_ROOT
 
 # Load theme variables so Eww can resolve color references
-set -a
-source "${SCRIPT_DIR}/../theme.env"
-set +a
+THEME_ENV="${SCRIPT_DIR}/../theme.env"
+if [[ -f "$THEME_ENV" ]]; then
+  set -a
+  # shellcheck source=../theme.env
+  source "$THEME_ENV"
+  set +a
+else
+  echo "Error: theme.env not found at $THEME_ENV" >&2
+  exit 1
+fi
 
 # Start the daemon if not already running
 if ! eww ping >/dev/null 2>&1; then
