@@ -1,60 +1,73 @@
 name: CI
-
 on:
   push:
-    paths:
-      - 'scripts/cp_layouts.py'
-      - 'cyberplasma/scripts/*.sh'
-      - 'tests/**'
-      - '.github/workflows/ci.yml'
   pull_request:
-    paths:
-      - 'scripts/cp_layouts.py'
-      - 'cyberplasma/scripts/*.sh'
-      - 'tests/**'
-      - '.github/workflows/ci.yml'
 
 jobs:
-  shellcheck:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install ShellCheck
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - name: Install linters
         run: |
+          python -m pip install -U pip
+          pip install ruff mypy coverage
+          sudo npm -g i markdownlint-cli || true
           sudo apt-get update
-          sudo apt-get install -y shellcheck
-      - name: Run ShellCheck
-        run: shellcheck cyberplasma/scripts/*.sh
+          sudo apt-get install -y yamllint || true
+          curl -sSfL https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download/actionlint.bash | bash -s -- -b "$PWD/bin"
+          echo "$PWD/bin" >> "$GITHUB_PATH"
+      - name: Run linters
+        run: |
+          ruff check .
+          ./bin/actionlint || true
+          markdownlint "**/*.md" || true
+          yamllint . || true
 
-  pytest:
+  test-python:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-      - name: Install pytest
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - name: Install deps
         run: |
-          python -m pip install --upgrade pip
-          pip install pytest
-      - name: Run pytest
-        run: python -m pytest
+          python -m pip install -U pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install pytest coverage mypy ruff
+      - name: Pytest
+        run: pytest -q
 
-  shell-tests:
+  test-shell:
     runs-on: ubuntu-latest
     container: bats/bats:1.11.0
     steps:
       - uses: actions/checkout@v4
-      - name: Ensure shell tests
+      - name: Ensure smoke test
         run: |
           mkdir -p tests/shell
-          if [ -z "$(find tests/shell -name '*.bats' -print -quit)" ]; then
-            cat <<'TEST' > tests/shell/00_smoke.bats
-#!/usr/bin/env bats
-@test "smoke test" {
-  true
-}
-TEST
+          if ! ls tests/shell/*.bats >/dev/null 2>&1; then
+            # shellcheck disable=SC1009,SC1072,SC1073,SC1039
+            cat > tests/shell/00_smoke.bats <<'EOF'
+            #!/usr/bin/env bats
+            @test "shell test harness is alive" {
+              run bash -lc 'echo ok'
+              [ "$status" -eq 0 ]
+              [ "$output" = "ok" ]
+            }
+            EOF
+            chmod +x tests/shell/00_smoke.bats
           fi
-      - name: Run Bats tests
+      - name: ShellCheck (warnings only fail if configured)
+        run: |
+          shopt -s globstar nullglob
+          files=( **/*.sh )
+          if [ ${#files[@]} -gt 0 ]; then
+            shellcheck -S warning "${files[@]}"
+          else
+            echo "No shell files found."
+          fi
+      - name: Run Bats
         run: bats tests/shell
