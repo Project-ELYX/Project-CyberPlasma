@@ -94,3 +94,17 @@ cp bismuth/config.json ~/.config/bismuth/
 ```
 
 
+## Shell Tests (Bats)
+
+Run the shell test suite with [Bats](https://github.com/bats-core/bats-core):
+
+```bash
+make test-shell
+```
+
+Or use a container if Bats isn't installed:
+
+```bash
+docker run --rm -v "$PWD":/repo -w /repo bats/bats:1.11.0 bats tests/shell
+```
+
