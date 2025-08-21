@@ -7,6 +7,7 @@
 #   --toggle-all                Toggle all screens using saved modes
 
 set -euo pipefail
+# IFS intentionally left at default to split jq output on spaces
 
 # Ensure required commands are available
 for cmd in jq xrandr; do

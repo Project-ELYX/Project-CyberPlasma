@@ -13,7 +13,7 @@ export CYBERPLASMA_ROOT
 THEME_ENV="${SCRIPT_DIR}/../theme.env"
 if [[ -f "$THEME_ENV" ]]; then
   set -a
-  # shellcheck source=../theme.env
+  # shellcheck disable=SC1090,SC1091
   source "$THEME_ENV"
   set +a
 else
@@ -33,8 +33,11 @@ xrandr --query | awk '/ connected/{for(i=1;i<=NF;i++) if ($i ~ /[0-9]+x[0-9]+\+/
   # Ensure geometry token matches WIDTHxHEIGHT+X+Y
   if [[ $geometry =~ ^([0-9]+)x([0-9]+)\+([0-9]+)\+([0-9]+)$ ]]; then
     width=${BASH_REMATCH[1]}
+    # shellcheck disable=SC2034
     height=${BASH_REMATCH[2]}
+    # shellcheck disable=SC2034
     offset_x=${BASH_REMATCH[3]}
+    # shellcheck disable=SC2034
     offset_y=${BASH_REMATCH[4]}
   else
     continue

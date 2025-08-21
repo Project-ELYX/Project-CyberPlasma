@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Apply previously saved screen modes on login.
 set -euo pipefail
+IFS=$'\n\t'
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 if [[ -x "$SCRIPT_DIR/mode_engine.sh" ]]; then

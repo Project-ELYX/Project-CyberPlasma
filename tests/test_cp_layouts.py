@@ -6,7 +6,7 @@ from pathlib import Path
 scripts_dir = Path(__file__).resolve().parents[1] / "scripts"
 sys.path.insert(0, str(scripts_dir))
 
-import cp_layouts  # type: ignore
+import cp_layouts  # type: ignore  # noqa: E402
 
 
 def _setup_state(monkeypatch, tmp_path):
