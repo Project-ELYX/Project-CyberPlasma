@@ -84,6 +84,16 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
+if [[ -n "$screen" ]] && [[ ! "$screen" =~ ^[A-Za-z0-9_-]+$ ]]; then
+    echo "Error: invalid screen '$screen'; must match [A-Za-z0-9_-]+" >&2
+    exit 1
+fi
+
+if [[ -n "$mode" ]] && [[ ! "$mode" =~ ^[A-Za-z0-9_-]+$ ]]; then
+    echo "Error: invalid mode '$mode'; must match [A-Za-z0-9_-]+" >&2
+    exit 1
+fi
+
 if [[ "$do_toggle_all" == true ]]; then
     toggle_all
 elif [[ -n "$screen" ]]; then
