@@ -16,7 +16,9 @@ These units manage optional components for the CyberPlasma setup. The list below
 - `yakuake` for `yakuake.service`
 - `bismuth` for `bismuth-mode.service`
 
-Ensure these packages are installed before enabling the services.
+Ensure these packages are installed before enabling the services. The helper
+scripts referenced by the units must also reside in a directory listed in
+your `PATH` (for example, `~/.local/bin`).
 
 ## Widgets
 The `eww.service` expects widgets named `top_bar` and `left_column` to be defined in your EWW configuration.
@@ -48,5 +50,6 @@ Export `CYBERPLASMA_PANEL_SCREEN_ID` with the desired screen number so
 export CYBERPLASMA_PANEL_SCREEN_ID=1
 ```
 
-Copy the `panel_visibility.sh` script to `~/scripts/` if it is not
-already present.
+Install `toggle_tiling.sh` and `panel_visibility.sh` together in a directory on
+your `PATH`. The scripts locate their helpers relative to their own location, so
+keeping them in the same directory ensures the panel toggling feature works.

@@ -8,5 +8,13 @@ STATE_FILE="$STATE_DIR/bismuth_mode"
 
 if [[ -f "$STATE_FILE" ]]; then
     mode=$(<"$STATE_FILE")
-    "$HOME"/scripts/toggle_tiling.sh --"$mode"
+    SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+    if [[ -x "$SCRIPT_DIR/toggle_tiling.sh" ]]; then
+        "$SCRIPT_DIR/toggle_tiling.sh" --"$mode"
+    elif command -v toggle_tiling.sh >/dev/null 2>&1; then
+        toggle_tiling.sh --"$mode"
+    else
+        echo "Error: toggle_tiling.sh not found" >&2
+        exit 1
+    fi
 fi

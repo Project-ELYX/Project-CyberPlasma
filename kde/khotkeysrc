@@ -16,7 +16,7 @@ ActionsCount=1
 
 [Data_1/Actions/0]
 Type=COMMAND_URL
-CommandURL=~/scripts/toggle_tiling.sh
+CommandURL=toggle_tiling.sh
 
 [Data_1/Triggers]
 TriggersCount=1
@@ -36,7 +36,7 @@ ActionsCount=1
 
 [Data_2/Actions/0]
 Type=COMMAND_URL
-CommandURL=~/scripts/toggle_tiling.sh --grid
+CommandURL=toggle_tiling.sh --grid
 
 [Data_2/Triggers]
 TriggersCount=1
@@ -56,7 +56,7 @@ ActionsCount=1
 
 [Data_3/Actions/0]
 Type=COMMAND_URL
-CommandURL=~/scripts/toggle_tiling.sh --free
+CommandURL=toggle_tiling.sh --free
 
 [Data_3/Triggers]
 TriggersCount=1
@@ -76,7 +76,7 @@ ActionsCount=1
 
 [Data_4/Actions/0]
 Type=COMMAND_URL
-CommandURL=~/scripts/cp_layouts.py cycle next
+CommandURL=cp_layouts.py cycle next
 
 [Data_4/Triggers]
 TriggersCount=1
@@ -96,7 +96,7 @@ ActionsCount=1
 
 [Data_5/Actions/0]
 Type=COMMAND_URL
-CommandURL=~/scripts/cp_layouts.py cycle prev
+CommandURL=cp_layouts.py cycle prev
 
 [Data_5/Triggers]
 TriggersCount=1
@@ -116,7 +116,7 @@ ActionsCount=1
 
 [Data_6/Actions/0]
 Type=COMMAND_URL
-CommandURL=~/scripts/cp_layouts.py move up
+CommandURL=cp_layouts.py move up
 
 [Data_6/Triggers]
 TriggersCount=1
@@ -136,7 +136,7 @@ ActionsCount=1
 
 [Data_7/Actions/0]
 Type=COMMAND_URL
-CommandURL=~/scripts/cp_layouts.py move down
+CommandURL=cp_layouts.py move down
 
 [Data_7/Triggers]
 TriggersCount=1
@@ -156,7 +156,7 @@ ActionsCount=1
 
 [Data_8/Actions/0]
 Type=COMMAND_URL
-CommandURL=~/scripts/cp_layouts.py move left
+CommandURL=cp_layouts.py move left
 
 [Data_8/Triggers]
 TriggersCount=1
@@ -176,7 +176,7 @@ ActionsCount=1
 
 [Data_9/Actions/0]
 Type=COMMAND_URL
-CommandURL=~/scripts/cp_layouts.py move right
+CommandURL=cp_layouts.py move right
 
 [Data_9/Triggers]
 TriggersCount=1

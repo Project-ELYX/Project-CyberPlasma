@@ -5,6 +5,7 @@
 
 set -euo pipefail
 
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}"
 STATE_FILE="$STATE_DIR/bismuth_mode"
 
@@ -38,10 +39,22 @@ echo "$MODE" > "$STATE_FILE"
 panel_screen="${CYBERPLASMA_PANEL_SCREEN_ID:-}"
 if [[ -n "$panel_screen" ]]; then
     if [[ "$panel_screen" =~ ^[0-9]+$ ]]; then
-        if [[ "$MODE" == "grid" ]]; then
-            "$HOME"/scripts/panel_visibility.sh hide "$panel_screen"
+        helper="$SCRIPT_DIR/panel_visibility.sh"
+        if [[ -x "$helper" ]]; then
+            panel_cmd="$helper"
+        elif command -v panel_visibility.sh >/dev/null 2>&1; then
+            panel_cmd="panel_visibility.sh"
         else
-            "$HOME"/scripts/panel_visibility.sh show "$panel_screen"
+            panel_cmd=""
+        fi
+        if [[ -n "$panel_cmd" ]]; then
+            if [[ "$MODE" == "grid" ]]; then
+                "$panel_cmd" hide "$panel_screen"
+            else
+                "$panel_cmd" show "$panel_screen"
+            fi
+        else
+            echo "Warning: panel_visibility.sh not found; skipping panel toggling" >&2
         fi
     else
         echo "Warning: invalid CYBERPLASMA_PANEL_SCREEN_ID '$panel_screen'; skipping panel toggling" >&2

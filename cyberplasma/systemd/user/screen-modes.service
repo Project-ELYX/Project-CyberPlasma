@@ -6,7 +6,7 @@ Description=Apply saved screen modes
 After=graphical-session.target
 
 [Service]
-ExecStart=%h/scripts/apply_screen_modes.sh
+ExecStart=/usr/bin/env apply_screen_modes.sh
 
 [Install]
 WantedBy=cyberplasma.target
