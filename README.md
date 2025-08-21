@@ -94,12 +94,20 @@ cp bismuth/config.json ~/.config/bismuth/
 ```
 
 
-## Shell Tests (Bats)
+## Testing
+
+Run linters, type checks and unit tests:
+
+```bash
+make all
+```
+
+### Shell Tests (Bats)
 
 Run the shell test suite with [Bats](https://github.com/bats-core/bats-core):
 
 ```bash
-make test-shell
+make test-sh
 ```
 
 Or use a container if Bats isn't installed:
@@ -108,3 +116,13 @@ Or use a container if Bats isn't installed:
 docker run --rm -v "$PWD":/repo -w /repo bats/bats:1.11.0 bats tests/shell
 ```
 
+## Contributing
+
+Install pre-commit hooks:
+
+```bash
+pip install pre-commit
+pre-commit install
+```
+
+Please ensure `make all` succeeds before submitting a pull request.
