@@ -45,6 +45,10 @@ A basic EWW configuration is included under `cyberplasma/eww`:
    ```
 
 ### Screen Modes
+Install the helper scripts to a directory on your `PATH` (for example,
+`~/.local/bin`). Each script looks for its companions relative to its own
+location, so keeping them together ensures they can find their helpers.
+
 Restore saved display configurations at login by enabling the user service:
 
 ```bash

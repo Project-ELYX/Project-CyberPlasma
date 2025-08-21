@@ -6,7 +6,7 @@ Description=Restore Bismuth tiling mode
 After=graphical-session.target
 
 [Service]
-ExecStart=%h/scripts/apply_bismuth_mode.sh
+ExecStart=/usr/bin/env apply_bismuth_mode.sh
 
 [Install]
 WantedBy=cyberplasma.target
