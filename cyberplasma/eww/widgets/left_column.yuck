@@ -7,8 +7,8 @@
 ;; Network activity
 (defpoll net :interval "2s" :command "../scripts/net.sh $(../scripts/default_iface.sh)" :json true)
 
-;; Temperature (first available sensor)
-(defpoll temp :interval "5s" :command "../scripts/temp.sh | jq '{temp: (.[keys[0]])}'" :json true)
+;; Temperature (explicit CPU thermal zone)
+(defpoll temp :interval "5s" :command "../scripts/temp.sh cpu_thermal_zone" :json true)
 ;; Uptime
 (defpoll uptime :interval "60s" :command "sh -c 'uptime -p | sed \"s/^up //\"'")
 ;; Load averages
