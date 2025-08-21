@@ -22,3 +22,9 @@ A lightweight wiring check is available:
 ```bash
 scripts/healthcheck.sh
 ```
+
+To scan the repository for potential secrets:
+
+```bash
+tools/scan_secrets.sh
+```
