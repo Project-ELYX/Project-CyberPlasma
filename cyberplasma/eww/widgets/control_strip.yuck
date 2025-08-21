@@ -17,16 +17,24 @@
 ;; Media info
 (defpoll mpris :interval "2s" :command "../scripts/mpris.sh" :json true)
 
+;; Current tiling mode (command/control)
+(defpoll mode :interval "2s" :command "../scripts/current_mode.sh")
+
 (defwidget control_strip []
   (svg :path "../../../chrome/control_strip_skinned.svg"
-       (slot slot-pins (box :class "slot-pins"))
+       (slot slot-pins (box :class "slot-pins" :spacing 4
+                                (button :class "pin" :onclick "konsole" (image :path "../../../icons/icon_app_terminal.svg" :width 24 :height 24))
+                                (button :class "pin" :onclick "firefox" (image :path "../../../icons/icon_app_browser.svg" :width 24 :height 24))
+                                (button :class "pin" :onclick "dolphin" (image :path "../../../icons/icon_app_files.svg" :width 24 :height 24))))
        (slot slot-net (box :class "slot-net" :halign "start" :valign "center" :spacing 4
                                   (label :class "iface" :text "${net.interface}")
                                   (label :class "local-ip" :text "${local_ip[net.interface]}")
                                   (label :class "public-ip" :text "${public_ip.ip}")
                                   (image :class "vpn-icon" :width 16 :height 16
                                          :path (if vpn.vpn "../../../icons/icon_vpn_on.svg" "../../../icons/icon_vpn_off.svg"))))
-       (slot slot-viz (box :class "slot-viz"))
+       (slot slot-viz (box :class "slot-viz"
+                             (button :class "viz-toggle" :onclick "../scripts/toggle_viz.sh"
+                                     (image :path "../../../icons/icon_music.svg" :width 24 :height 24))))
        (slot slot-media (box :class "slot-media" :halign "start" :valign "center" :spacing 4
                                    (mpris_controls :status mpris.status)
                                    (label :class "mpris-text" :text "${mpris.artist} - ${mpris.title}")))
@@ -38,4 +46,8 @@
                                    (label :class "ram" :text "${ram.percent}%")))
        (slot slot-time (box :class "slot-time" :halign "center" :valign "center"
                             (label :class "datetime" :text "${datetime}")))
-       (slot slot-modebadge (box :class "slot-modebadge"))))
+       (slot slot-modebadge (box :class "slot-modebadge"
+                                  (image :width 24 :height 24
+                                         :path (if (= mode "grid")
+                                                   "../../../icons/icon_command_mode.svg"
+                                                   "../../../icons/icon_control_mode.svg"))))))
