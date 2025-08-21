@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Apply previously saved Bismuth mode on login.
+# Accepted mode values: grid or free. Defaults to free if invalid.
 
 set -euo pipefail
 
