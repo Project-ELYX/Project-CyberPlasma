@@ -27,6 +27,7 @@ import os
 import subprocess
 import sys
 from typing import Dict, Any
+import fcntl
 
 STATE_DIR = os.environ.get("XDG_STATE_HOME", os.path.expanduser("~/.local/state"))
 LAYOUT_FILE = os.path.join(STATE_DIR, "cp_layouts.json")
@@ -45,7 +46,11 @@ def load_data() -> Dict[str, Any]:
 def save_data(data: Dict[str, Any]) -> None:
     os.makedirs(STATE_DIR, exist_ok=True)
     with open(LAYOUT_FILE, "w") as f:
-        json.dump(data, f, indent=2)
+        fcntl.lockf(f, fcntl.LOCK_EX)
+        try:
+            json.dump(data, f, indent=2)
+        finally:
+            fcntl.lockf(f, fcntl.LOCK_UN)
 
 
 def current_screen() -> str:
