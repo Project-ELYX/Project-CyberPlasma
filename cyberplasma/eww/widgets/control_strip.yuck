@@ -26,11 +26,13 @@
                                 (button :class "pin" :onclick "konsole" (image :path "../../../icons/icon_app_terminal.svg" :width 24 :height 24))
                                 (button :class "pin" :onclick "firefox" (image :path "../../../icons/icon_app_browser.svg" :width 24 :height 24))
                                 (button :class "pin" :onclick "dolphin" (image :path "../../../icons/icon_app_files.svg" :width 24 :height 24))))
+
        (slot slot-net (box :class "slot-net" :halign "start" :valign "center" :spacing 4
                                   (label :class "iface" :text "${net.interface}")
                                   (label :class "local-ip" :text "${local_ip[net.interface]}")
                                   (label :class "public-ip" :text "${public_ip.ip}")
                                   (image :class "vpn-icon" :width 16 :height 16
+
                                          :path (if vpn.vpn "../../../icons/icon_vpn_on.svg" "../../../icons/icon_vpn_off.svg"))))
        (slot slot-viz (box :class "slot-viz"
                              (button :class "viz-toggle" :onclick "../scripts/toggle_viz.sh"
@@ -39,9 +41,9 @@
                                    (mpris_controls :status mpris.status)
                                    (label :class "mpris-text" :text "${mpris.artist} - ${mpris.title}")))
        (slot slot-sysmini (box :class "slot-sysmini" :halign "start" :valign "center" :spacing 8
-                                   (image :path "../../../icons/icon_cpu.svg" :width 16 :height 16)
+                                   (image :path (format "%s/icons/icon_cpu.svg" (getenv "CYBERPLASMA_ROOT")) :width 16 :height 16)
                                    (label :class "cpu" :text "${cpu.usage}%")
-                                   (image :path "../../../icons/icon_temp.svg" :width 16 :height 16)
+                                   (image :path (format "%s/icons/icon_temp.svg" (getenv "CYBERPLASMA_ROOT")) :width 16 :height 16)
                                    (label :class "temp" :text "${temp.temp}°C")
                                    (label :class "ram" :text "${ram.percent}%")))
        (slot slot-time (box :class "slot-time" :halign "center" :valign "center"
