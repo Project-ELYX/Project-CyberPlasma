@@ -37,9 +37,13 @@ echo "$MODE" > "$STATE_FILE"
 # ("free") shows it again.
 panel_screen="${CYBERPLASMA_PANEL_SCREEN_ID:-}"
 if [[ -n "$panel_screen" ]]; then
-    if [[ "$MODE" == "grid" ]]; then
-        "$HOME"/scripts/panel_visibility.sh hide "$panel_screen"
+    if [[ "$panel_screen" =~ ^[0-9]+$ ]]; then
+        if [[ "$MODE" == "grid" ]]; then
+            "$HOME"/scripts/panel_visibility.sh hide "$panel_screen"
+        else
+            "$HOME"/scripts/panel_visibility.sh show "$panel_screen"
+        fi
     else
-        "$HOME"/scripts/panel_visibility.sh show "$panel_screen"
+        echo "Warning: CYBERPLASMA_PANEL_SCREEN_ID must be numeric; skipping panel toggle" >&2
     fi
 fi
